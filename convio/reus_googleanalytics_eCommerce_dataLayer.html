@@ -1,0 +1,34 @@
+[[U0:analyticsTransComplete=false]]
+[[?xtruex::x[[S334:df_preview]]x::
+::
+[[? 
+[[?[[S8]]::donation=completed::T::]]
+[[?xTracking Codex::x[[S120:dc:trackingCode]]x::::T]]
+[[?xxdc:donationFormNamexx::xx[[S120:dc:donationFormName]]xx::::T]]
+::T:: 
+<script>
+   [[U0:analyticsTransComplete = true]]
+   
+// modify and set session variables
+   [[U0:analyticsOrderId=[[T6:[[S120:dc:trackingCode]]]]]]  // maps tracking code to order id
+   [[U0:analyticsAffiliation=[[T6:[[S120:dc:donationFormName]]]]]]  // maps donation form name to Affiliation
+   [[U0:analyticsTransAmount=[[E130:"[[S120:dc:giftAmount]]" 1 "[[S120:dc:giftAmount]]" length substring "," "" replaceall]]]] // corrects donation form $dollar amount and maps to transaction amount
+   [[U0:analyticsPageName=[[?xx::x[[S334:src_pagename]]x::[[S334:df_id]]::[[S334:src_pagename]]]]]] // maps pagename for API forms or donation form id (df_id) as the PRODUCT
+   [[U0:analyticsCategory=[[T6:[[?xx:x[[S334:s_src]]x::::[[S334:s_src]]]]]]]]  // maps source code to Category, if you don't use source code... you could do something donation campaign id?
+
+dataLayer = [{
+    'transactionId': '[[S80:analyticsOrderId]]',  // order ID - required
+    'transactionAffiliation': '[[S80:analyticsAffiliation]]', // donation form name, mapped to "affiliation"
+    'transactionTotal': '[[S80:analyticsTransAmount]]', // total - required
+    '', // tax - you don't really need this as a non-profit, amirite?
+    '', // shipping - you probably don't need this either
+    'transactionProducts': [{
+        'sku': 'DD44',
+        'name': '[[S80:analyticsPageName]]',  // Page name in URL SKU/code required (populates with pagename or df_id, pagename if you use API forms)
+        'category': '[[S80:analyticsCategory]]',   // source code, mapped to "category"
+        '[[S80:analyticsTransAmount]]',  // unit price - required
+        'quantity': 1 // required
+    }]
+}];
+</script>
+::]]]]

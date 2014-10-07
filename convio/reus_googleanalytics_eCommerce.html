@@ -1,0 +1,44 @@
+[[U0:analyticsTransComplete=false]]
+[[?xtruex::x[[S334:df_preview]]x::
+::
+[[? 
+[[?[[S8]]::donation=completed::T::]]
+[[?xTracking Codex::x[[S120:dc:trackingCode]]x::::T]]
+[[?xdc:donationFormNamex::x[[S120:dc:donationFormName]]x::::T]]
+::T:: 
+
+   [[U0:analyticsTransComplete = true]]
+   
+// modify and set session variables
+   [[U0:analyticsOrderId=[[T6:[[S120:dc:trackingCode]]]]]]
+   [[U0:analyticsAffiliation=[[T6:[[S120:dc:donationFormName]]]]]]
+   [[U0:analyticsTransAmount=[[E130:"[[S120:dc:giftAmount]]" 1 "[[S120:dc:giftAmount]]" length substring "," "" replaceall]]]]
+   [[U0:analyticsPageName=[[?xx::x[[S334:src_pagename]]x::[[S334:df_id]]::[[S334:src_pagename]]]]]]
+   [[U0:analyticsCategory=[[T6:[[?xx:x[[S334:s_src]]x::::[[S334:s_src]]]]]]]]
+  
+   _gaq.push(['_addTrans',
+     '[[S80:analyticsOrderId]]',  // order ID - required
+     '[[S80:analyticsAffiliation]]', // donation form name, mapped to "affiliation"
+     '[[S80:analyticsTransAmount]]', // total - required
+     '', // tax - not implemented
+     '', // shipping - not implemented
+     '[[T6:[[S120:dc:city]]]]', // city
+     '[[T6:[[S120:dc:stateProvince]]]]', // state
+     '[[T6:[[S120:dc:country]]]]' // country
+    ]);
+
+   // add item might be called for every item in the shopping cart
+   // where your ecommerce engine loops through each item in the cart and
+   // prints out _addItem for each
+   _gaq.push(['_addItem',
+      '[[S80:analyticsOrderId]]',  // order ID - necessary to associate item with transaction
+      '[[S80:analyticsPageName]]',  // Page name in URL SKU/code required  pagename or df_id
+      '[[S80:analyticsAffiliation]]', // donation form name, mapped to "affiliation"
+      '[[S80:analyticsCategory]]',   // source code, mapped to "category"
+      '[[S80:analyticsTransAmount]]',  // unit price - required
+      "1"    // quantity - required
+   ]);
+
+   _gaq.push(['_trackTrans']); 	//submits transaction to the Analytics servers
+
+::]]]]

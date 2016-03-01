@@ -1,0 +1,37 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ccfa-takesteps2013.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 3
+'Start at line 2 (file has header + change line/row # to skip forms already configured)
+SET !LOOP 108
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure3.convio.net/ccfa/admin/PageBuilderAdmin?pagebuilder=page_list
+TAG POS=1 TYPE=A ATTR=TXT:Create<SP>a<SP>Single<SP>Component<SP>Page
+WAIT SECONDS=2
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:page_namename CONTENT=reus_custom_greeting_{{!COL3}}
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:page_descriptionname CONTENT={{!COL1}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:securityList.pagebuilder_admin_cat CONTENT=${{!COL2}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:pagebuilder_content_foldername CONTENT=%1770
+TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:process ATTR=ID:reusable CONTENT=YES
+WAIT SECONDS=2
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=2
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:version_namename CONTENT=Take<SP>Steps<SP>2013
+WAIT SECONDS=2
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+TAG POS=1 TYPE=IMG ATTR=ID:menu_img_0
+TAG POS=1 TYPE=A ATTR=TXT:HTML<SP>Content
+TAB T=2
+FRAME F=0
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:editor CONTENT=<h2>[[E47:[[S334:fr_id]]:fr_info:1:sponsor_5]]<SP>Take<SP>Steps<SP>Be<SP>Heard!</h2><a<SP>href="http://online.ccfa.org/site/TR/Walk/General?pg=informational&fr_id=[[S334:fr_id]]&type=fr_informational&sid=3550"><img<SP>src="../take-steps/13/ccfa_greetingpage.png"<SP>alt="Register<SP>to<SP>Walk!"<SP>align="right"<SP>/></a><p>Take<SP>Steps<SP>for<SP>Crohn's<SP>&<SP>Colitis<SP>is<SP>CCFA's<SP>largest<SP>fundraising<SP>event<SP>and<SP>the<SP>nation's<SP>only<SP>walk<SP>dedicated<SP>to<SP>finding<SP>a<SP>cure<SP>for<SP>digestive<SP>diseases.<SP>Participants<SP>raise<SP>funds<SP>throughout<SP>the<SP>year<SP>to<SP>find<SP>a<SP>cure<SP>and<SP>come<SP>together<SP>to<SP>celebrate<SP>the<SP>steps<SP>taken<SP>when<SP>no<SP>American<SP>has<SP>to<SP>suffer<SP>with<SP>digestive<SP>diseases<SP>and<SP><SP>Crohn's<SP>or<SP>colitis.<SP><SP>A<SP>cure<SP>is<SP>within<SP>our<SP>reach<SP>yet<SP>we<SP>need<SP>you.</p><p><a<SP>href="http://online.ccfa.org/site/TR/Walk/General?pg=informational&fr_id=[[S334:fr_id]]&type=fr_informational&sid=3550">Register<SP>today</a>.<SP>Join<SP>thousands<SP>of<SP>others<SP>in<SP>the<SP>fight<SP>against<SP>digestive<SP>diseases.</p><p>With<SP>your<SP>support<SP>we<SP>are<SP>committed<SP>to<SP>transforming<SP>the<SP>lives<SP>of<SP>those<SP>impacted<SP>by<SP>these<SP>diseases<SP>to<SP>one<SP>of<SP>a<SP>brighter<SP>future<SP>based<SP>on<SP>well-funded,<SP>cutting-edge<SP>scientific<SP>research.<SP>Make<SP>the<SP>decision<SP>now<SP>to<SP>join<SP>us<SP>and<SP>raise<SP>funds<SP><SP>toward<SP>a<SP>future<SP>free<SP>from<SP>Crohn's<SP>and<SP>colitis!</p>
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:process ATTR=ID:pstep_save
+WAIT SECONDS=2
+FRAME F=1
+TAG POS=1 TYPE=IMG ATTR=ID:finish
+TAB T=1
+WAIT SECONDS=2
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:process ATTR=ID:page_publish_buttonbtn
+WAIT SECONDS=1

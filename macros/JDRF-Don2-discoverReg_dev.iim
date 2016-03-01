@@ -1,0 +1,17 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file - fr_id of production Team Raiser Events - Fall Walks FY12
+CMDLINE !DATASOURCE jdrf_fall_walks_reg_prod.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 3
+'Start at line 1 to skip forms already processed
+SET !LOOP 12
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Navigate to "Edit Billing Page"  
+URL GOTO=https://secure3.convio.net/jdrf3dev/admin/TREdit?app_id=26&page_type=fr_billing&tr=edit_event_page&action=edit_custom_page_content&fr_id={{!COL1}}
+WAIT SECONDS=2
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:Gfr_wysiwygtextarea CONTENT=<h1>Registration<SP>Progress</h1><BR><table<SP>class="registrationProgres"<SP>cellspacing="5"<SP>cellpadding="0"<SP>align="center"<SP>width="100%"><BR><tr><td<SP>align="center"<SP>width="16%"><img<SP>src="../img/blueShoeSm.gif"<SP>alt=""/></td><BR><td<SP>align="center"<SP>width="16%"><img<SP>src="../img/blueShoeSm.gif"<SP>alt=""<SP>/></td><BR><td<SP>align="center"<SP>width="16%"><img<SP>src="../img/blueShoeSm.gif"<SP>alt=""<SP>/></td><BR><td<SP>align="center"<SP>width="16%"><img<SP>src="../img/blueShoeSm.gif"<SP>alt=""<SP>/></td><BR><td<SP>align="center"<SP>width="16%"><img<SP>src="../img/blueShoeSm.gif"<SP>alt=""<SP>/></td><BR><td<SP>align="center"<SP>width="16%"><img<SP>src="../img/greyShoeSm.gif"<SP>alt=""<SP>/></td></tr><BR><tr><td<SP>width="16%"<SP>align="center"<SP>valign="top"><p<SP>class="complete">1.<SP>Team<br<SP>/>Information</p></td><BR><td<SP>width="16%"<SP>align="center"<SP>valign="top"><p<SP>class="complete">2.<SP>Participation<SP>Options</p></td><BR><td<SP>width="16%"<SP>align="center"<SP>valign="top"><p<SP>class="complete">3.<SP>Contact<SP>Information</p></td><BR><td<SP>width="16%"<SP>align="center"<SP>valign="top"><p<SP>class="complete">4.<SP>Waiver</p></td><BR><td<SP>width="16%"<SP>align="center"<SP>valign="top"><p<SP>class="complete">5.<SP>Summary</p></td><BR><td<SP>width="16%"<SP>align="center"<SP>valign="top"><p<SP>class="incomplete">6.<SP>Registration<SP>Complete!</p></td></tr><BR></table><BR>[[S51:reus_walk_discoverpromoCopy]]<BR><script<SP>type="text/javascript"<SP>language="javascript"><BR><!--<BR><BR>/*<SP><BR>Discover<SP>Card<SP>Promotion<BR>Reference:<SP>Case<SP>#348870<BR>Remove<SP>January<SP>31,<SP>2012<BR>*/<BR><BR>function<SP>moveCards()<SP>{<BR>if<SP>((document.getElementById('Discover'))<SP>&&<SP>(document.getElementById('Visa')))<SP>{<BR><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP>var<SP>discoverTD<SP>=<SP>document.getElementById('Discover').parentNode.parentNode.parentNode;<BR><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP>var<SP>visaTD<SP>=<SP>document.getElementById('Visa').parentNode.parentNode.parentNode;<BR><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP><SP>discoverTD.parentNode.appendChild(visaTD);<BR>};<BR>}<BR>addOnLoadHandler(moveCards);<BR><BR>--><BR></script><BR><style><BR>p.centered<SP>{<SP>float:left;<SP>padding-left:2px;}<BR>.discoverCopy<SP>{position:absolute;<SP>float:right;<SP>width:350px;<SP>left:720px;<SP>top:890px;}<BR></style><BR><!--[if<SP>gte<SP>IE<SP>6]><BR><style><BR>.discoverCopy<SP>{position:absolute;<SP>float:right;<SP>width:350px;<SP>left:720px;<SP>top:890px;}<BR></style><BR><![endif]--><BR>
+WAIT SECONDS=2
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=2

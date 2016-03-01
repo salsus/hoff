@@ -1,0 +1,168 @@
+﻿VERSION BUILD=7401110 RECORDER=FX
+TAB T=1
+SET !EXTRACT_TEST_POPUP NO
+' Naming Convention "XYZ Admin Group Name"
+' used only when creating SET !VAR1 ""
+' Security Category setting - update this to the security category override you wish to make, true for both creation and modification
+SET !VAR2 "General"
+
+
+' used only when creating URL GOTO=https://secure3.convio.net/fww/admin/GroupAdmin?group=admin_group_list
+' used only when creating WAIT SECONDS=1
+' used only when creating TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>New<SP>Group
+' used only when creating WAIT SECONDS=1
+' Create Development Group
+' used only when creating TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:uRegForm ATTR=ID:GroupName CONTENT={{!VAR1}}<SP>Development
+' used only when creating TAG POS=1 TYPE=SELECT FORM=NAME:uRegForm ATTR=NAME:group_security_mode CONTENT=$Admin<SP>Security<SP>Group
+' used only when creating 'TAG POS=1 TYPE=SELECT FORM=NAME:uRegForm ATTR=NAME:grp_sec_cat CONTENT=${{!VAR2}}
+' used only when creating TAG POS=1 TYPE=SELECT FORM=NAME:uRegForm ATTR=NAME:group_type_list CONTENT=$FWW<SP>Admin<SP>Groups
+' used only when creating TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:uRegForm ATTR=ID:add_new_group
+' used only when creating WAIT SECONDS=1
+'Get the Group ID
+' used only when creating SET !EXTRACT NULL
+' used only when creating TAG POS=1 TYPE=INPUT:HIDDEN FORM=NAME:IGroupDetails ATTR=NAME:GroupID EXTRACT=TXT
+' used only when creating SET !VAR3 {{!EXTRACT}}
+'Edit permissions for the group
+' used only when creating URL GOTO=https://secure3.convio.net/fww/admin/GroupAdmin?view=group&group_id={{!VAR3}}&action=perms&group=admin_edit_perms
+
+
+
+'Follow this if you want to add a security category override to an admin group
+'     #1 navigate to Setup > Groups to open up the Administrator groups
+'     #2 search for the group you would like to modify
+'     #3 click on "Edit Permissions" from the Actions column
+'     #4 set Var3 to the group ID
+'     #5 run this macro
+SET !VAR3 "15569"
+'Edit Advocacy Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Advocacy<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_71
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Contact Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Contact<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_80
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Content Viewing
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Content<SP>Viewing
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Group Administration
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Group<SP>Administration
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_140
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Donation Form Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Donation<SP>Form<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_52
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Transaction Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Transaction<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_291
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Reports Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Report<SP>Writer
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_404
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Mail Merge
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Mail<SP>Merge<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_162
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Query Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Query<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_110
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Survey Responses
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:current.rgID CONTENT=$Content<SP>-<SP>Survey<SP>Management<SP>Only
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR3}} ATTR=ID:select.rgroup
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>an<SP>override
+WAIT SECONDS=1
+TAB T=2
+TAG POS=1 TYPE=SELECT FORM=NAME:CategorySelect ATTR=ID:select.catid CONTENT=${{!VAR2}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=NAME:CategorySelect ATTR=ID:selected.role_263
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:CategorySelect ATTR=ID:submit.override
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&rgID=*&mode=only.overrides ATTR=ID:save.db
+WAIT SECONDS=1
+URL GOTO=https://secure3.convio.net/fww/admin/GroupAdmin?view=EditGroup&group_id={{!VAR3}}
+URL GOTO=javascript:alert("Finished");

@@ -1,0 +1,23 @@
+﻿VERSION BUILD=7210419 RECORDER=FX
+TAB T=1 
+' Specify input file 
+CMDLINE !DATASOURCE imacros-wwflocaladvo-final-2-16-2-sh.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 1
+'Start at line 1 (change line # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+'URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=edit_alert&alert_id={{!COL1}}&action=edit_alert
+'TAG POS=1 TYPE=SPAN ATTR=TXT:Configure<SP>Pages
+'WAIT SECONDS=2
+'TAG POS=1 TYPE=A ATTR=TXT:Customize<SP>Page
+'WAIT SECONDS=2
+'TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:process ATTR=ID:show_title_checked CONTENT=NO
+'POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:process ATTR=ID:show_recipient_list_checked CONTENT=NO
+'TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=edit_alert_autoresponders&alert_id={{!COL1}}&action=create_alert_autoresponders
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:_Email_Body_Text CONTENT=[[S51:reus_ehcc_ARhtml]]
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:email_plain_text CONTENT=[[S51:reus_ehcc_ARtxt]]
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+WAIT SECONDS=3

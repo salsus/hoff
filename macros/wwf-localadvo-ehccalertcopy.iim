@@ -1,0 +1,15 @@
+﻿VERSION BUILD=7210419 RECORDER=FX
+TAB T=1 
+' Specify input file 
+CMDLINE !DATASOURCE imacros-wwflocaladvo-final-2-16-2-sh.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 12
+'Start at line 1 (change line # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=edit_alert_config_pages&alert_id={{!COL1}}&action=edit_alert_config_pages
+TAG POS=1 TYPE=A ATTR=TXT:Customize<SP>Page
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:Gcontent1textarea CONTENT={{!COL7}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=3

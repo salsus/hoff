@@ -1,0 +1,18 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ppfa-sustainer-giftservicecenter2.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 4
+'Start at line 1 (change line/row # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Navigate to "Sustaining Initial Thank You "
+URL GOTO=https://secure2.convio.net/ppfa/admin/Donation2Admin?df_id={{!COL3}}&don.admin=form_cfg&action=cfg&dc_id=-1
+TAG POS=1 TYPE=A ATTR=TXT:Configure<SP>Service<SP>Center
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:service_center_headerhtml CONTENT={{!COL4}}
+TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:process ATTR=ID:enable_modify_cc_infoname CONTENT=YES
+TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:process ATTR=ID:enable_modify_amountname CONTENT=YES
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=5

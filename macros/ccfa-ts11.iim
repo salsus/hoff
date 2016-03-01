@@ -1,0 +1,13 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ccfa-takesteps2011.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 1
+'Start at line 1 (change line/row # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure3.convio.net/ccfa/admin/TREdit?tr=teamraiser_create_event_status&action=action_create_event_status&fr_id={{!COL1}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:status_listname CONTENT=%4
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button

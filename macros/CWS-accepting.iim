@@ -1,0 +1,20 @@
+﻿VERSION BUILD=3700331       
+'Uses a Windows script to submit several datasets to a website, e. g. for filling an online database
+TAB T=1     
+' Specify input file (if !COL variables are used, IIM automatically assume a CSV format of the input file
+'CSV = Comma Separated Values in each line of the file
+CMDLINE !DATASOURCE cws-acceptinggifts.csv
+'Number of columns in the CSV file. This must be accurate!
+SET !DATASOURCE_COLUMNS 1
+'Start at line 2 to skip the header in the file
+SET !LOOP 1
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Fill web form   
+URL GOTO=https://secure2.convio.net/cws/admin/TREdit?tr=teamraiser_create_event_status&action=action_create_event_status&fr_id={{!COL1}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:status_listname CONTENT=%3
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=3
+
+
+

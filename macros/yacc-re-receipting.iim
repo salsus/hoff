@@ -1,0 +1,17 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE yacc-re-receipt.csv
+'Number of columns in the CSV file.
+SET !DATASOURCE_COLUMNS 1
+'Start at line 2 to skip the header in the file
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Fill web form 
+WAIT SECONDS=1
+URL GOTO=https://secure3.convio.net/yacc/admin/TransactionAdmin?actId=duplicate_receipt&tx_id={{!COL1}}&pg=action
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/yacc/admin/TransactionAdmin ATTR=ID:duplicate_rcpt
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/yacc/admin/TransactionAdmin ATTR=ID:close_rcpt
+WAIT SECONDS=1

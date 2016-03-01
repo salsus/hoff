@@ -1,0 +1,18 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file (if !COL variables are used, IIM automatically assume a CSV format of the input file
+'CSV = Comma Separated Values in each line of the file
+CMDLINE !DATASOURCE jdrf_fall_walks_don2_dev.csv
+'Number of columns in the CSV file. This must be accurate!
+SET !DATASOURCE_COLUMNS 1
+'Start at line 4 to skip forms already processed
+SET !LOOP 4
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Fill web form   
+URL GOTO=https://secure3.convio.net/jdrf3dev/admin/Donation2Admin?df_id={{!COL1}}&don.admin=designer.cf&des_id=&action=design_form&dc_id=1241
+WAIT SEconds=11
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:html_captionhtml CONTENT=[[S51:reus_walk_discoverpromoCopy]]<BR><div<SP>id="verisign-seal-container">[[S66:payment/verisign_seal.tpt]]</div>
+WAIT SECONDS=2
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=2

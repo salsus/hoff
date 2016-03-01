@@ -1,0 +1,18 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ccfa-takesteps2013.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 8
+'Start at line 2 (file has header + change line/row # to skip forms already configured)
+SET !LOOP 3
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure3.convio.net/ccfa/admin/Donation2Admin?don.admin=campaign_id_edit_pa&action=edit&dc_id={{!COL7}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:securityList.campaign_security CONTENT=${{!COL2}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+WAIT SECONDS=3
+URL GOTO=https://secure3.convio.net/ccfa/admin/Donation2Admin?df_id={{!COL8}}&don.admin=form_ed_id.cf&action=edit&dc_id={{!COL7}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:securityList.form_security CONTENT=${{!COL2}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+WAIT SECONDS=1

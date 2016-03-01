@@ -1,0 +1,14 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE wwf_donationforms_120213.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 1
+'Start at line 1 (change line/row # to skip forms already configured)
+SET !LOOP 38
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Navigate to "Sustaining Initial Thank You "
+URL GOTO=https://secure2.convio.net/wwf/admin/Donation2Admin?autores_obj_id={{!COL1}}&df_id={{!COL1}}&don.admin=form_autoresp_ed&autores_obj_id_param_name=df_id&autores_type_id=66&autores_app_id=9&action=action_configure_autoresponders&dc_id=
+TAG POS=9 TYPE=A ATTR=TXT:Revert<SP>to<SP>Site<SP>Default<SP>Version
+WAIT SECONDS=5

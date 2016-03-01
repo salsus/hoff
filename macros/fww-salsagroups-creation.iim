@@ -1,0 +1,25 @@
+﻿VERSION BUILD=7401110 RECORDER=FX
+TAB T=1
+SET !EXTRACT_TEST_POPUP NO
+'Set static group description
+SET !VAR1 "Salsa<SP>Group<SP>Key<SP>"
+' Specify input file 
+CMDLINE !DATASOURCE fww_salsa_groupcreation.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 2
+'Start at line 2 (change line/row # to skip what has already been configured)
+SET !LOOP 8
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+'Starting URL
+WAIT SECONDS=2
+URL GOTO=https://secure3.convio.net/fww/admin/GroupAdmin?group=group_list
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>New<SP>Group
+'Add Group Name
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:uRegForm ATTR=ID:GroupName CONTENT={{!COL2}}
+'Add Group Description
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:uRegForm ATTR=ID:GroupDesc CONTENT={{!VAR1}}{{!COL1}}
+'Select Group Type
+TAG POS=1 TYPE=SELECT FORM=NAME:uRegForm ATTR=ID:group_type_list CONTENT=%Groups<SP>from<SP>Salsa
+'Submit!
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:uRegForm ATTR=ID:add_new_group

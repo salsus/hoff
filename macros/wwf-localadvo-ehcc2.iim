@@ -1,0 +1,63 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE imacros-wwflocaladvo-final-2-16-2.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 7
+'Start at line 2 (change line # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+VERSION BUILD=7401110 RECORDER=FX
+TAB T=1
+URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=alert_list&alert_id=
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Create<SP>Alert
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:alert_namename CONTENT=Earth<SP>Hour<SP>City<SP>Challenge:<SP>{{!COL1}}
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:alert_internal_namename CONTENT=EHCC<SP>{{!COL1}}
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:alert_descriptionname CONTENT=Earth<SP>Hour<SP>City<SP>Challenge<SP>{{!COL1}}
+TAG POS=1 TYPE=INPUT:RADIO FORM=ID:process ATTR=ID:alert_num_steps_one_step
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=SELECT FORM=Name:process ATTR=ID:alert_topicname CONTENT=$Environment<SP>-<SP>Other
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:msg_subjectname CONTENT=MYCITY,<SP>compete<SP>in<SP>the<SP>Earth<SP>Hour<SP>City<SP>Challenge
+TAG POS=1 TYPE=INPUT:RADIO FORM=ID:process ATTR=ID:msg_subject_options_modify
+TAG POS=1 TYPE=INPUT:RADIO FORM=ID:process ATTR=ID:msg_main_editable_modify
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:msg_main2name CONTENT={{!COL2}}
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:msg_closing_bodyname CONTENT={{!COL3}}
+' Hitting Save instead of Next to avoid the Select Targets step
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=SPAN ATTR=TXT:Select<SP>Contact<SP>Fields
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:RADIO FORM=ID:process ATTR=ID:email_opt_in_config_opt_in_show_checkbox_hide_yes
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:_Email_Body_Text CONTENT={{!COL4}}
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:process ATTR=ID:email_convert_html
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=INPUT:RADIO FORM=ID:process ATTR=ID:adv_opt_choose_flow_taf_thanks
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:taf_subjectname CONTENT=Is<SP>your<SP>city<SP>prepared<SP>for<SP>increasingly<SP>extreme<SP>weather?
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:taf_bodyname CONTENT={{!COL5}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+TAG POS=1 TYPE=A ATTR=TXT:Customize<SP>Page
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:Gcontent1textarea CONTENT={{!COL6}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=1
+TAG POS=9 TYPE=A ATTR=TXT:Customize<SP>Page
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:alert_page_editorhtml CONTENT={{!COL7}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=1
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=2

@@ -1,0 +1,32 @@
+﻿VERSION BUILD=7400919 RECORDER=FX
+TAB T=1
+' Specify input file - fr_id of production Team Raiser Events - Fall Walks FY12
+CMDLINE !DATASOURCE jdrf_reus_logos.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 3
+'Start at line 1 to skip forms already processed
+SET !LOOP 149
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Create new Single Component Page
+WAIT SECONDS=4
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:page_namename CONTENT=reus_fallwalkfy12_{{!COL1}}
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:page_descriptionname CONTENT=Local<SP>Sponsor<SP>Logos<SP>for<SP>TR-{{!COL1}}<SP>--<SP>{{!COL3}}
+' Select page Security Category of TR event - in csv
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:securityList.pagebuilder_admin_cat CONTENT=%{{!COL2}}
+' Add to content folder: Coaching Emails > Fall Walk FY12
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:pagebuilder_content_foldername CONTENT=%1271
+TAG POS=1 TYPE=LABEL ATTR=TXT:This<SP>is<SP>a<SP>reusable<SP>Page<SP>that<SP>can<SP>be<SP>embedded<SP>in<SP>an<SP>HTML<SP>Component<SP>in<SP>other<SP>Pages.
+TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:process ATTR=ID:reusable CONTENT=YES
+WAIT SECONDS=2
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+WAIT SECONDS=2
+TAG POS=1 TYPE=IMG ATTR=ID:menu_img_0
+TAG POS=1 TYPE=A ATTR=TXT:HTML<SP>Content
+TAB T=2
+FRAME F=0
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:editor CONTENT=<h3>Local<SP>Sponsors</h3>
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:process ATTR=ID:pstep_save
+WAIT SECONDS=11
+' Click on Finish and Publish Manually

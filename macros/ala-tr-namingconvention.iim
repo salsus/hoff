@@ -1,0 +1,34 @@
+﻿' ALA Standardize TeamRaiser names
+' Case #386729
+' shoffman 120524
+' note: deleted TR events cannot have their name changed 
+VERSION BUILD=7401110 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ala-tr-namestandardization.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 8
+'Start at line 1 (change line/row # to skip forms already configured)
+SET !LOOP 412
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure3.convio.net/ala/admin/TREdit?tr=teamraiser_create_pa&action=action_create_campaign&fr_id={{!COL1}}
+' Update Team name
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:admin_namename CONTENT={{!COL2}}
+' Update Fiscal Year
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:event-fiscal-yearname CONTENT=%{{!COL4}}
+' Update primary event type
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:eventclassification_sel CONTENT=%{{!COL6}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+' note: some events do not have a donation form selected (the donation form has been archived)
+' manually select a donation form
+WAIT SECONDS = 1
+' insert event fundraising goal
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:teamraiser-goal-amountinput CONTENT={{!COL3}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+TAG POS=1 TYPE=A ATTR=TXT:Identify<SP>Location<SP>Details
+' insert event location details
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:cityname CONTENT={{!COL7}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:statename CONTENT=%{{!COL8}}
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=2

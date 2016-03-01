@@ -1,0 +1,15 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ccfa-takesteps2013.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 8
+'Start at line 2 (file has header + change line/row # to skip forms already configured)
+SET !LOOP 154
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure3.convio.net/ccfa/admin/TREdit?tr=teamraiser_fundraising_info&action=action_create_fundraising_info&fr_id={{!COL4}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:listname CONTENT=%{{!COL7}}.{{!COL8}}
+WAIT SECONDS=2
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+WAIT SECONDS=2

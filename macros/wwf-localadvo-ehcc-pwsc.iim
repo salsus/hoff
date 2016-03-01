@@ -1,0 +1,34 @@
+﻿VERSION BUILD=7210419 RECORDER=FX
+TAB T=1 
+' Specify input file 
+CMDLINE !DATASOURCE wwf-echh.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 3
+'Start at line 1 (change line # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=edit_alert&alert_id={{!COL1}}&action=edit_alert
+' TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:securityList.alert_cat CONTENT=%1042
+' TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+' WAIT SECONDS=5
+' change wrapper to ECHH wrapper
+'URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=edit_alert_look_and_feel&alert_id={{!COL1}}
+'TAG POS=1 TYPE=INPUT:RADIO FORM=ID:process ATTR=ID:page_wrapperradio_specific
+'TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:page_wrappername CONTENT=%5041
+'TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+' change wrapper to default
+'URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=edit_alert_look_and_feel&alert_id={{!COL1}}
+'TAG POS=1 TYPE=INPUT:RADIO FORM=ID:process ATTR=ID:page_wrapperradio_default
+'TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+' change priority to low and restrict by state
+'URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=edit_alert_advanced_options&alert_id={{!COL1}}&action=alert_adv_options
+'TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:adv_opt_priorityname CONTENT=%20
+'TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:process ATTR=ID:adv_opt_state_restrictionname CONTENT=YES
+'TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:process ATTR=ID:adv_opt_state_listname CONTENT={{!COL3}}
+'TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+' go live
+URL GOTO=https://secure2.convio.net/wwf/admin/AdvocacyAdmin?advocacy=edit_alert_publish&alert_id={{!COL1}}&action=edit_alert_publish
+TAG POS=1 TYPE=INPUT:RADIO FORM=ID:process ATTR=ID:publish_option_publish_now
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+WAIT SECONDS=2

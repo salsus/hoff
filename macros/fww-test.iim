@@ -1,0 +1,51 @@
+﻿VERSION BUILD=7401110 RECORDER=FX
+TAB T=1
+SET !EXTRACT_TEST_POPUP NO
+SET !VAR1 "National"
+URL GOTO=https://secure3.convio.net/fww/admin/GroupAdmin?group=admin_group_list
+WAIT SECONDS=1
+TAG POS=1 TYPE=A ATTR=TEXT:Add<SP>New<SP>Group
+WAIT SECONDS=1
+' Create Organizer Group
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:uRegForm ATTR=ID:GroupName CONTENT={{!VAR1}}<SP>Organizer
+TAG POS=1 TYPE=SELECT FORM=NAME:uRegForm ATTR=NAME:group_security_mode CONTENT=$Admin<SP>Security<SP>Group
+TAG POS=1 TYPE=SELECT FORM=NAME:uRegForm ATTR=NAME:grp_sec_cat CONTENT={${{!VAR1}}
+TAG POS=1 TYPE=SELECT FORM=NAME:uRegForm ATTR=NAME:group_type_list CONTENT=$Sub-Administrator<SP>Groups
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:uRegForm ATTR=ID:add_new_group
+WAIT SECONDS=1
+'Get the Group ID
+SET !EXTRACT NULL
+TAG POS=1 TYPE=INPUT:HIDDEN FORM=NAME:IGroupDetails ATTR=NAME:GroupID EXTRACT=TXT
+SET !VAR2 {{!EXTRACT}}
+'Edit permissions for the group
+URL GOTO=https://secure3.convio.net/fww/admin/GroupAdmin?view=group&group_id={{!VAR2}}&action=perms&group=admin_edit_perms
+'Edit Advocacy Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:current.rgID CONTENT=$Advocacy<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:select.rgroup
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure2.convio.net/vateam/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Advocacy Target Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:current.rgID CONTENT=$Advocacy<SP>Target<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:select.rgroup
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure2.convio.net/vateam/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Contact Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:current.rgID CONTENT=$Contact<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:select.rgroup
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure2.convio.net/vateam/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Content - PageBuilder Authoring Only
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:current.rgID CONTENT=$Content<SP>-<SP>PageBuilder<SP>Authoring<SP>Only
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:select.rgroup
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure2.convio.net/vateam/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Content Viewing
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:current.rgID CONTENT=$Content<SP>Viewing
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:select.rgroup
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure2.convio.net/vateam/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:save.db
+WAIT SECONDS=1
+'Edit Email Management
+TAG POS=1 TYPE=SELECT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:current.rgID CONTENT=$Email<SP>Management
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure3.convio.net/fww/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:select.rgroup
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:https://secure2.convio.net/vateam/admin/RolesAdmin?view=group&group_id={{!VAR2}} ATTR=ID:save.db
+WAIT SECONDS=1

@@ -1,0 +1,28 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE wwf_donationforms_110929.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 1
+'Start at line 1 (change line # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Navigate to "Edit Donation Form Levels"  
+URL GOTO=https://secure2.convio.net/wwf/admin/Donation2Admin?df_id={{!COL1}}&don.admin=lvl_list&action=lvl_list&dc_id=-1
+' Wait- review levels for recurring
+WAIT SECONDS=11
+' Navigate to "Sustaining Initial Thank You "
+URL GOTO=https://secure2.convio.net/wwf/admin/Donation2Admin?autores_obj_id={{!COL1}}&df_id={{!COL1}}&don.admin=autoresponder_edit2.don_edit&autores_obj_id_param_name=df_id&autores_type_id=66&autores_app_id=9
+
+
+
+'standard donation thank you
+URL GOTO=https://secure2.convio.net/wwf/admin/Donation2Admin?autores_obj_id={{!COL1}&df_id={{!COL1}&don.admin=autoresponder_edit2.don_edit&autores_obj_id_param_name=df_id&autores_type_id=65&autores_app_id=9
+' Add in AR Copy
+WAIT SECONDS=19
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_next-button
+' Add in AR Copy
+WAIT SECONDS=19
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=4

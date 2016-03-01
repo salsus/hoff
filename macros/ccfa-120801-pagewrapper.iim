@@ -1,0 +1,14 @@
+﻿VERSION BUILD=5110613 RECORDER=CR
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ccfa_ts2012.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 1
+'Start at line 1 (change line/row # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure3.convio.net/ccfa/admin/TREdit?app_id=26&app_name=fr&tr=laf_cfg&action=action_configure_look_and_feel&fr_id={{!COL1}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:fr_page_wrappername CONTENT=%2441
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=1

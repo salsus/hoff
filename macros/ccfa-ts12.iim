@@ -1,0 +1,16 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ccfa-takesteps2012.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 1
+'Start at line 1 (change line/row # to skip forms already configured)
+SET !LOOP 2
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+'URL GOTO=https://secure3.convio.net/ccfa/admin/TREdit?app_id=26&page_type=fr_thanks&tr=edit_event_page&action=edit_custom_page_content&fr_id={{!COL1}}
+'TAG POS=1 TYPE=TEXTAREA FORM=NAME:process ATTR=ID:Gfr_htmltextarea CONTENT=[[?[[?[[S50:User-Agent]]::Mobile::T::]][[?[[S50:User-Agent]]::Opera<SP>Mini::T::]]<SP>[[?[[S50:User-Agent]]::BlackBerry::T::]]::T::<BR><BR>[[S51:reus_mobile_TS12_thankyoupage]]<BR>::<BR>[[S51:reus_TS12_thankyoupage]]<BR>]]<BR><BR>
+'TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_save-button
+URL GOTO=https://secure3.convio.net/ccfa/admin/TREdit?tr=teamraiser_create_event_status&action=action_create_event_status&fr_id={{!COL1}}
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:status_listname CONTENT=%2
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button

@@ -1,0 +1,16 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE jdrf_fall_walks_recurringgiftlimit_prod.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 1
+'Start at line 1 (change line # to skip forms already configured)
+SET !LOOP 61
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+'Navigate to "Edit Donation Form"   
+URL GOTO=https://secure3.convio.net/jdrf3/admin/Donation2Admin?df_id={{!COL1}}&don.admin=designer.cf&des_id=&action=design_form&dc_id={{COL2}}
+'Manual selection of "Flexible Sustainer Level" donation form element
+'Scroll to Review the End Date
+WAIT SECONDS=30
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:process ATTR=ID:pstep_cancel

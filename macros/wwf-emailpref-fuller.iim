@@ -1,0 +1,21 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE wwf_fullerseminar.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 1
+'Start at line 1 (change line # to skip forms already configured)
+SET !LOOP 753
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure2.convio.net/wwf/admin/ConsFind
+WAIT SECONDS=4
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:FindUser ATTR=ID:FINDUSER_Email CONTENT={{!COL1}}
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:FindUser ATTR=ID:FINDUSER_Find
+WAIT SECONDS=6
+TAG POS=1 TYPE=IMG ATTR=ID:edit
+WAIT SECONDS=4
+TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:EditCons ATTR=ID:accepts_email CONTENT=YES
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:EditCons ATTR=ID:op.saveCons-top
+TAG POS=1 TYPE=A ATTR=TXT:Email<SP>Preferences
+WAIT SECONDS=4

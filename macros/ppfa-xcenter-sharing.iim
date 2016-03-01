@@ -1,0 +1,16 @@
+﻿VERSION BUILD=7300701 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ppfa-xcenter-conviogroups.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 6
+'Start at line 1 (change line/row # to skip forms already configured)
+SET !LOOP 8232
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+' Navigate to Edit Group Screen
+URL GOTO=https://secure2.convio.net/ppfa/admin/GroupAdmin?group_id={{!COL2}}&action=edit_sec_cat&group=edit_category
+TAG POS=1 TYPE=SELECT FORM=NAME:process ATTR=ID:securityList.edit_sec_cat CONTENT=%{{!COL6}}
+WAIT SECONDS=3
+TAG POS=1 TYPE=BUTTON ATTR=ID:pstep_finish-button
+WAIT SECONDS=3

@@ -1,0 +1,14 @@
+﻿VERSION BUILD=7401110 RECORDER=FX
+TAB T=1
+' Specify input file 
+CMDLINE !DATASOURCE ala-email-interets-delete.csv
+'Number of columns in the CSV file. 
+SET !DATASOURCE_COLUMNS 2
+'Start at line 3 (change line/row # to skip forms already configured)
+SET !LOOP 3
+'Increase the current position in the file with each loop 
+SET !DATASOURCE_LINE {{!LOOP}}
+URL GOTO=https://secure3.convio.net/ala/admin/InterestCategory?Action=VIEW&Category={!COL2}
+ONDIALOG POS=1 BUTTON=OK CONTENT=
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:CatDetail ATTR=ID:DELETE
+WAIT SECONDS=2

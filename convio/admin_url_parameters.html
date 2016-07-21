@@ -1,0 +1,110 @@
+<div id="adminTitle">
+<a name="mainContent" href="AdminHomePage?pagename=admin_reference"><span class="TitleBar">Reference Home</span></a>
+<br>
+see also, <a href="AdminHomePage?pagename=admin_url_structure">URL Structure</a>
+</div>
+<style>
+pre {
+max-width:800px;
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+padding: 16px;
+	overflow: auto;
+	line-height: 1.45;
+	background-color: #f7f7f7;
+	border-radius: 3px;
+	font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+<div width="800" style="width:800px; margin:0 auto;">
+<h1>Convio URL parameters</h1>
+
+<table class="tg">
+  <tr>
+    <th class="tg-yw4l">URL Parameter</th>
+    <th class="tg-yw4l">What's it do?</th>
+  </tr>
+  <tr>
+    <td class="tg-031e">AddInterest</td>
+    <td class="tg-031e">Addsthe Interest (specified by ID) to the logged in constituent's record.</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">autologin</td>
+    <td class="tg-031e">A value of "true" indicates that when a user clicks on the link from an Email message, they should be automatically be logged in.</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">df_preview</td>
+    <td class="tg-031e">Sets a donation form to preview mode, allowing the test credit card (4111 1111 1111 1111) to be used. Useful when you need to get to a form's thank you page and don't want to use your own credit card.</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">mfc_popup</td>
+    <td class="tg-031e">A value of "true" indicates the page should be displayed in a "pop-up" wrapper.</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">NEXTURL</td>
+    <td class="tg-031e">The URL to redirect the browser to after the user takes some action. Most common usecase is UserLogin. In Survey, it overrides the Survey Submitted function</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">pgwrap</td>
+    <td class="tg-031e">A value of "n" indicates the page should not be rendered inside a page wrapper.</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">pw_id</td>
+    <td class="tg-031e">Overrides the within a specific pagewrapper Id and version. If there are multiple security categories or multi-center, then you'll also need to use s_AffiliateSetCatId=1</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">RemoveInterest</td>
+    <td class="tg-031e">Removes the Interest (specified by ID) to the logged in constituent's record.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">s_Affiliate</td>
+    <td class="tg-yw4l">Sets the Affiliate session variable, which is used by multi-affiliate sites.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">s_AffiliateSecCatId</td>
+    <td class="tg-yw4l">Sets the security category (specified by ID) in the user's session. Often used in conjunction with pw_id to push a particular page wrapper into the user's session.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">s_debug</td>
+    <td class="tg-yw4l">- Enables debug mode - good for troubleshooting anything. Setting this to true will also make it so that HTML comments are included above and below any reusables on a page indicating the pagename of the reusable.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">s_debug_pc</td>
+    <td class="tg-yw4l">Set to pc2 or classic to force either type of participant center in your session</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">s_jsfirebuglite</td>
+    <td class="tg-yw4l">Loads Firebug Lite on the page, and every subsequent page in the session. Extremely useful for browsers that don't natively have Firebug plugins, like IE or mobile browsing.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">s_promoCode</td>
+    <td class="tg-yw4l">Sets the specified promo code in the user's session. Promo codes can be used to display special ticket levels for Calendar/Ticketed Events or participation types for TeamRaiser events.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">s_src</td>
+    <td class="tg-yw4l">Actively sets the source code in the user's session. If the user is new or a new record is created, this will double as their Origin Source Code.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">s_subsrc</td>
+    <td class="tg-yw4l">Sets the sub-source code in the user's session. If the user is new or a new record is created, this will double as their Origin SubSource Code.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">scid</td>
+    <td class="tg-yw4l">Sets the Center (specified by the Center's security category ID) in the user's session for Multi-Center clients.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">set.foo</td>
+    <td class="tg-yw4l">See https://www.blackbaud.com/files/support/helpfiles/luminate-online/help/luminateonline.html#../Subsystems/donation_management/Content/Concepts/Admin_Online_Giving_Management_DonationForms_HiddenInputs.html for more info</td>
+  </tr>
+</table>
+
+
+</div>

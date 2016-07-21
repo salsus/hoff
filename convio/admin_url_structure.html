@@ -1,0 +1,172 @@
+<div id="adminTitle">
+<a name="mainContent" href="AdminHomePage?pagename=admin_reference"><span class="TitleBar">Reference Home</span></a>
+<br>
+see also, <a href="AdminHomePage?pagename=admin_url_parameters">URL Parameters</a>
+</div>
+<style>
+pre {
+max-width:800px;
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+padding: 16px;
+	overflow: auto;
+	line-height: 1.45;
+	background-color: #f7f7f7;
+	border-radius: 3px;
+	font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+</style>
+<div width="800" style="width:800px; margin:0 auto;">
+<h1>Convio URL structure</h1>
+<h2>Action Alert page</h2>
+
+<pre>[[S29:DOMAIN]]/site/Advocacy?id=xxxx</pre>
+
+<h2>Calendar Event</h2>
+
+<pre>[[S29:DOMAIN]]/site/Calendar?view=Detail&id=xxxx</pre>
+
+<h2>Call Alerts</h2>
+
+<pre>[[S29:DOMAIN]]/site/Advocacy?alertId=xxxxpg=makeACall</pre>
+
+
+<h2>Document Library link</h2>
+
+<pre>[[S29:DOMAIN]]/site/DocServer/fffffff?docID=xxxx
+fffff = file name
+xxxxx = doc ID</pre>
+
+<h2>Donation Campaign Donation Form page</h2>
+
+<pre>[[S29:DOMAIN]]/site/Donation2?df_id=xxxx</pre>
+
+
+<h2>eCard Campaign</h2>
+
+<pre>[[S29:DOMAIN]]/site/Ecard?ecard_id=xxxx</pre>
+
+<h2>eCommerce Product</h2>
+
+<pre>[[S29:DOMAIN]]/site/Ecommerce?product_id=xxxx
+[[S29:DOMAIN]]/site/Ecommerce?VIEW_PRODUCT=true&product_id=xxxx</pre>
+
+<h2>eCommerce Store</h2>
+
+<pre>[[S29:DOMAIN]]/site/Ecommerce?store_id=xxxx</pre>
+
+<h2>Email Messages</h2>
+
+<pre>[[S29:DOMAIN]]/site/MessageViewer?em_id=xxxx.y
+where "y" = variant, mostly "0"</pre>
+
+<h2>Logins </h2>
+
+<pre>[[S29:DOMAIN]]/site/AdminLogin
+[[S29:DOMAIN]]/site/UserLogin</pre>
+
+<pre>UserLogin?logout=</pre>
+
+<h2>PageBuilder page</h2>
+
+<pre>[[S29:DOMAIN]]/site/PageServer?pagename=xxxx
+[[S29:DOMAIN]]/site/PageNavigator/xxxx.html</pre>
+
+<h2>PageBuilder page - admin page</h2>
+
+<pre>[[S29:DOMAIN]]/site/AdminHomePage?pagename=xxxx</pre>
+
+
+<h2>Personal Fundraising</h2>
+
+<pre>[[S29:DOMAIN]]/site/TR?fr_id=xxxx&pg=tgreeting</pre>
+
+<h2>Printer Friendly</h2>
+
+<pre>add to the end of the url either:
+&printer_friendly=1 
+?printer_friendly=1 
+just try one and then the other</pre>
+
+<h2>Surveys</h2>
+
+<pre>[[S29:DOMAIN]]/site/Survey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=xxxx</pre>
+
+<h2>Sustainer Gift Service Center</h2>
+
+<pre>[[S29:DOMAIN]]/site/ServiceCenter</pre>
+
+<h2>TellAFriend</h2>
+
+<pre>[[S29:DOMAIN]]/site/TellAFriend
+[[S29:DOMAIN]]/site/TellAFriend?page=http://www.yourlinkhere.org
+
+TellAFriend?tafInfoId=&subject=[[T1:Check out this site]]&message=[[T1:It's a cool site]]&page=[[T1:http://www.yourlinkhere.org]]
+</pre>
+
+<h2>TeamRaiser and Tributes Campaigns</h2>
+
+<pre>[[S29:DOMAIN]]/site/TR?fr_id=xxxx</pre>
+
+<h2>TeamRaiser</h2>
+
+<pre>[[S29:DOMAIN]]/site/TR/Events/General?fr_id=xxxx
+[[S29:DOMAIN]]/site/TR/Events/General?fr_id=xxxx&pg=entry -- Greeting Page
+[[S29:DOMAIN]]/site/TR/Events/General?px=rrrrrrr&pg=personal&fr_id=xxx -- Personal Page
+[[S29:DOMAIN]]/site/TR/Events/General?team_id=ttttttt&pg=team&fr_id=xxxx -- Team Page
+rrrrrr = cons id of participant
+tttttt = team id
+those are important for donations to participant and team
+</pre>
+
+<h2>TeamRaiser Registration</h2>
+
+<pre>[[S29:DOMAIN]]/site/TRR?pg=ptype&fr_id=xxxx</pre>
+
+<h2>TeamRaiser Participant Center</h2>
+
+<pre>[[S29:DOMAIN]]/site/TRC/Events/General?pg=center&fr_id=xxxx</pre>
+
+<h2>TeamRaiser Participant Center - forcing PC vs PC2</h2>
+
+<pre>[[S29:DOMAIN]]/site/TRC/Events/General?pg=center&fr_id=xxxx&s_debug_pc=classic
+[[S29:DOMAIN]]/site/TRC/Events/General?pg=center&fr_id=xxxx&s_debug_pc=pc2</pre>
+
+<h2>TeamRaiser Event Manager</h2>
+
+<pre>[[S29:DOMAIN]]/site/TREM?tr.emgmt=em_event_center&fr_id=xxxx</pre>
+
+<h2>Tributes Champ Center</h2>
+
+<pre>[[S29:DOMAIN]]/site/TRC?fr_id=xxx</pre>
+
+<h2>TeamRaiser Custom Pages</h2>
+
+<pre>[[S29:DOMAIN]]/site/TR?fr_id=xxxx&pg=informational&sid=xxxx&hash=xxxxx</pre>
+
+<h2>TeamRaiser National Companies</h2>
+
+<pre>[[S29:DOMAIN]]/site/TR?company_id=xxxx&pg=national_company</pre>
+
+<h2>TeamRaiser Search</h2>
+<pre>[[S29:DOMAIN]]/site/TR?fr_id=xxxx&pg=pfind
+[[S29:DOMAIN]]/site/TR?fr_id=xxxx&pg=pfind&pg=pfind&s_tr_part_finder_search_mode=advanced
+[[S29:DOMAIN]]/site/TR?fr_id=xxxx&pg=pfind&pg=pfind&s_tr_part_finder_search_mode=basic
+</pre>
+
+
+
+<h2>Various Other Links</h2>
+
+<pre>[[S29:DOMAIN]]/site/AdminLogin
+[[S29:DOMAIN]]/site/ConsInterestsUser
+[[S29:DOMAIN]]/site/ConsProfileUser
+[[S29:DOMAIN]]/site/LoginAs
+[[S29:DOMAIN]]/site/LoginAsAdmin
+[[S29:DOMAIN]]/site/UserLogin
+[[S29:DOMAIN]]/site/UserLogin?Logout=true
+[[S29:DOMAIN]]/site/UserLogin?CMD=ForgotPassword</pre>
+</div>

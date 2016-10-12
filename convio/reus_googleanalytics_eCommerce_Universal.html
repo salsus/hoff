@@ -1,0 +1,38 @@
+[[U0:analyticsTransComplete=false]]
+[[?xtruex::x[[S334:df_preview]]x::
+::
+[[? 
+[[?[[S8]]::donation=completed::T::]]
+[[?xTracking Codex::x[[S120:dc:trackingCode]]x::::T]]
+[[?xdc:donationFormNamex::x[[S120:dc:donationFormName]]x::::T]]
+::T:: 
+
+   [[U0:analyticsTransComplete = true]]
+   
+// modify and set session variables
+   [[U0:analyticsOrderId=[[T6:[[S120:dc:trackingCode]]]]]]
+   [[U0:analyticsAffiliation=[[T6:[[S120:dc:donationLevelName]]]]]]
+   [[U0:analyticsTransAmount=[[E130:"[[S120:dc:giftAmount]]" 1 "[[S120:dc:giftAmount]]" length substring "," "" replaceall]]]]
+   [[U0:analyticsPageName=[[T6:[[S120:dc:donFormId]] - [[T6:[[S120:dc:donationLevelName]]]]]]]]
+   [[U0:analyticsCategory=[[T6:[[?xx:x[[S80:src]]x::::[[S80:src]]]]]]]]
+  
+   ga('ecommerce:addTransaction', {
+     'id': '[[S80:analyticsOrderId]]',  // order ID - required
+     'affiliation': '[[S80:analyticsAffiliation]]', // donation form name, mapped to "affiliation"
+     'revenue': '[[S80:analyticsTransAmount]]', // total - required
+     'shipping': '', // shipping - not implemented
+	 'tax':  '', // tax - not implemented
+    });
+
+   ga('ecommerce:addItem', {
+      'id': '[[S80:analyticsOrderId]]',  // order ID - necessary to associate item with transaction
+      'name': '[[S80:analyticsPageName]]',  // Donation Form ID + Donation Form Name
+      'sku': '[[S80:analyticsAffiliation]]', // donation form name, mapped to "affiliation"
+      'category': '[[S80:analyticsCategory]]',   // source code, mapped to "category"
+      'price': '[[S80:analyticsTransAmount]]',  // unit price - required
+      'quantity': '1'    // quantity - required
+   });
+
+   ga('ecommerce:send'); 	//submits transaction to Google Analytics 
+
+::]]]]

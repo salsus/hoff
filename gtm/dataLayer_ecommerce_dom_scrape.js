@@ -27,51 +27,54 @@ var prodlist = jQuery.makeArray( prodData );
 var quantlist = jQuery.makeArray( quantData );
 var pricelist = jQuery.makeArray( priceData );
 var variantlist = jQuery.makeArray( variantData );
-
- 
-//Create the product string: 
+var productFields = [];
+  
+//loop thru the items creating the objects: 
 for (i = 0; i < productCount; i++) {
  
-productListing = "{'name': '"+prodlist[i].innerHTML+"','quantity': '"+quantlist[i].innerHTML+"','price':'"+ pricelist[i].innerHTML+"','variant': '"+variantlist[i].innerHTML+"','brand': 'AJOT','category': 'Download'}";
-console.log("product is " + productListing);
-
+obj = {};
+obj["name"] = prodlist[i].innerHTML;
+obj["quantity"] = quantlist[i].innerHTML;
+obj["price"] = pricelist[i].innerHTML;
+obj["variant"] = variantlist[i].innerHTML;
+obj["brand"] = "AJOT";
+obj["category"] = "Download";
+productFields.push(obj); 
+//console.log("obj pushed");
+// console.log(obj);
   
-ga('ec:addProduct', {
-  'id': i ,
-  'name': prodlist[i].innerHTML,
-  'category': 'Download',
-  'brand': 'AJOT',
-  'variant': variantlist[i].innerHTML,
-  'price': pricelist[i].innerHTML,
-  'quantity': quantlist[i].innerHTML
-}); 
-  
+ //for troubleshooting: string view 
+  productListing = "{'name': '"+prodlist[i].innerHTML+"','quantity': '"+quantlist[i].innerHTML+"','price':'"+ pricelist[i].innerHTML+"','variant': '"+variantlist[i].innerHTML+"','brand': 'AJOT','category': 'Download'}";
+//console.log("product is " + productListing);
 if (i==0)
     productList += productListing;
 else
     productList += "," + productListing;  
 
+ 
  }
 
 
-//final formatting
-  productList = "["+productList+"]";
+//for troubleshooting. final formatting and send to DL . this variable isnt needed anymore
+productList = "["+productList+"]";
 console.log("full list is " + productList);
-  
-//update var name to variable name dl.gtmProd
 dataLayer.push({'dl.gtmProd': productList});
+//console.log(productFields);  
   
-
-  
-  // Transaction level information is provided via an actionFieldObject.
-ga('ec:setAction', 'purchase', {
-  'id': orderID,
-  'affiliation': 'AJOT',
-  'revenue': totalRev,
-  'tax': '0',
-  'shipping': '0' 
+//push to datalayer. all ready to go.
+  dataLayer.push({
+'event' : 'purchase',
+  'ecommerce': {
+    'purchase': {
+      'actionField': {
+        'id': orderID,
+        'affiliation': 'AJOT',
+        'revenue': totalRev,
+        'tax':'0.00',
+        'shipping': '0.00'
+      },
+	'products': productFields
+	}
+	}
 });
   
-  
-ga("send", "event", "EC Purchase", orderID, "Manual EC");
-  console.log("done sending event");

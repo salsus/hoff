@@ -1,3 +1,4 @@
+/* AA eCommerce */
 var productCount = jQuery('ul.line').length;
 var arrayCount=0;
 var productListing;
@@ -8,7 +9,6 @@ dataLayer.push({'gtmCount': productCount});
   var orderID = jQuery("[id*='Content_lblOrderID']").text(); 
   var totalRev = jQuery("[id*='Content_lblSubTotal']").text(); 
   dataLayer.push({'orderID': orderID});
-//dataLayer.push({'AJOT AMT': totalRev});
 
   
 var productList="";

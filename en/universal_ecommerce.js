@@ -16,7 +16,7 @@
         'id': '{receipt_data~txId}',
         'name': 'jQuery("input[name='ea.form.id']").val()',
         'sku': '{receipt_data~campaignId}',
-        'category': '{receipt_data~other2}' === 'N' ? 'OneTime' : '{receipt_data~other2}' === 'Y' ? 'Recurring' : 'Other',
+        'category': '{receipt_data~type}',
         'price': 'prettyAmount',  
         'quantity': '1'
     });

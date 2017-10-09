@@ -1,20 +1,23 @@
 // <![CDATA[
     if (window.EngagingNetworks){
 // Standard Ecommerce Tracking for Engaging Networks
+    var initialAmount = '{receipt_data~amount}';
+    var prettyAmount = initialAmount.replace(/\$/g, '');
+        
     ga('require', 'ecommerce');
     ga('ecommerce:addTransaction', {
         'id': '{receipt_data~txId}',
         'affiliation': 'Engaging Networks Donation Form',
-        'revenue': '{receipt_data~amount}'.replace(/\$|\s/g, '')',
+        'revenue': 'prettyAmount',
         'shipping': '',
         'tax': ''
     });
     ga('ecommerce:addItem', {
         'id': '{receipt_data~txId}',
         'name': 'jQuery("input[name='ea.form.id']").val()',
-        'sku': '{receipt_data~other2}' === 'N' ? 'OneTime' : '{receipt_data~other2}' === 'Y' ? 'Recurring' : 'Other',
-        'category': 'jQuery("input[name='ea.campaign.id ']").val()',
-        'price': '{receipt_data~amount}'.replace(/\$|\s/g, '')',  
+        'sku': '{receipt_data~campaignId}',
+        'category': '{receipt_data~other2}' === 'N' ? 'OneTime' : '{receipt_data~other2}' === 'Y' ? 'Recurring' : 'Other',
+        'price': 'prettyAmount',  
         'quantity': '1'
     });
     ga('ecommerce:send');

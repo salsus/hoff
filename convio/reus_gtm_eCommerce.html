@@ -1,0 +1,46 @@
+<script type="text/javascript">// <![CDATA[
+/* Code example passing both Standard Ecommerce and Enhanced Ecommerce data from Luminate Online into the dataLayer */
+[[?true::[[S80:debug]]::/*  s_gtmtest sets session varaiable for LO test mode  */::]]
+ var giftAmount = parseFloat('[[S120:dc:giftAmount]]'.replace(/\$|,/g, ''));
+ 
+ var giftDuration = '[[S120:dc:recurringFrequencyLabel]]',
+         giftAmount = parseFloat("[[S120:dc:giftAmount]]".replace("$", ""));
+     //console.log("giftAmount ="+ giftAmount );
+     if (giftDuration == '' || giftDuration === null || giftDuration === undefined) {
+       giftDuration = 'One time';
+     }
+	 donationAffiliation = "[[T6:[[?x9x::x[[S4]]x::Luminate Donations2::[[?x1x6x::x[[S4]]x::Luminate Ecommerce::Luminate Online::]]]]]]";
+
+    dataLayer.push({
+        'transactionId': '[[S120:dc:transactionID]]',
+        'transactionTotal': giftAmount,
+        'transactionAffiliation': '[[T6:[[S120:dc:campaignName]]]] ([[T6:[[S120:dc:campaignId]]]])',
+        'transactionProducts': [{
+            'sku': giftDuration,
+            'name': '[[T6:[[S120:dc:donationFormName]]]] ([[T6:[[S120:dc:donFormId]]]])', 
+            'price': giftAmount,
+            'quantity': 1
+        }],
+        'event': 'transactionComplete',
+		'ecommerce': {
+          'purchase': {
+            'actionField': {
+              'id': '[[S120:dc:transactionID]]',
+              'affiliation': donationAffiliation, // LO module
+              'revenue': giftAmount,
+              'tax':'0',
+              'shipping': '0'
+            },
+           'products': [{         
+              'name': '[[T6:[[S120:dc:donationFormName]]]] ([[T6:[[S120:dc:donFormId]]]])',   
+              'id': '[[S120:dc:donFormId]]',
+              'price': giftAmount,
+              'brand': '[[T6:[[S120:dc:campaignName]]]]',
+              'variant': giftDuration,
+              'quantity': 1,
+              'category': ''
+            }]
+          }
+        }
+    });
+// ]]></script>

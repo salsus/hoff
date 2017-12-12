@@ -1,0 +1,34 @@
+<script type="text/javascript">
+/* Internal Promotion Click Listener for Google Tag Manager, Fire on DOM Ready  */
+(function() {
+ "use strict";
+ var promo_name = {{promo_name parameter}};
+ var promo_id = {{promo_id parameter}};
+ var promo_creative={{promo_creative parameter}};
+ var promo_position={{promo_position parameter}};
+ var promoClickData = {};
+ if ((promo_name !== undefined && promo_name.length > 0) || (promo_id !== undefined && promo_id.length > 0)) {
+ if (promo_name !== undefined && promo_name.length > 0) {
+ promoClickData.name = promo_name;
+ }
+ if (promo_id !== undefined && promo_id.length > 0) {
+ promoClickData.id = promo_id;
+ }
+ if (promo_creative !== undefined && promo_creative.length > 0) {
+ promoClickData.creative = promo_creative;
+ }
+ if (promo_position !== undefined && promo_position.length > 0) {
+ promoClickData.position = promo_position;
+ }
+ dataLayer.push({
+ 'event': 'promotionClick',
+ 'ecommerce': {
+ 'promoClick': {
+ 'promotions': [promoClickData]
+ }
+ }
+ });
+ }
+
+}());
+</script>

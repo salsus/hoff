@@ -22,7 +22,6 @@ storeId = str.substring(n, m); // uses eCommerce title and store id as the brand
 var prod = {};
 
 //Get total from last row in table
-//total = jQuery("table.ShoppingCart tr:contains('Total Items Donation')").find('td:last').text();
   total = jQuery('#total_item_price').text();
 if (total) {
   total = total.replace(/\$/g, ''); //Remove $ sign
@@ -31,7 +30,7 @@ if (total) {
 //no shipping cost
 shippingCost = '';
 
-// if discount or coupon code
+// if discount or coupon code and set up arrays
   var couponCode = jQuery(".ShoppingCart div:contains('Discount Code')").find('div:last').text(),
   data = [],
   products = [];

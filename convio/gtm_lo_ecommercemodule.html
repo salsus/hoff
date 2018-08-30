@@ -1,0 +1,77 @@
+<script>
+/* Javascript for GTM to track Luminate Online eCommerce Module transactions. No S-Tags used/needed. 
+Author: sara.hoffman@beaconfire-red.com -- https://github.com/salsus/
+1) Put this script in a Custom HTML tag with an ecommerce TY page trigger looking for the following RegEx:
+    Pageview - Window Loaded
+    Page URL > Matches RegEx (ignore case):
+    (.*)ecommercecheckout\/(.*)confirmation=true(.*)
+
+  2) create a UA Transaction tag to be triggered by a custom event called "storePurchase"
+*/
+
+var orderId = jQuery('#tracking_code').html();
+var cartItem, itemPrice, quantity, prodCode, prodPrice, prodSku, total, shippingCost,
+  items = [],
+  amountTotal = 0,
+  donationAffiliation = "Luminate Ecommerce"; // LO module is used as the Transaction Affiliation
+str = window.location.href;
+idLoc = str.lastIndexOf('store_id=');  
+n = idLoc + 9;
+m = n + 4;
+storeId = str.substring(n, m); // uses eCommerce title and store id as the brand
+var prod = {};
+
+//Get total from last row in table
+//total = jQuery("table.ShoppingCart tr:contains('Total Items Donation')").find('td:last').text();
+  total = jQuery('#total_item_price').text();
+if (total) {
+  total = total.replace(/\$/g, ''); //Remove $ sign
+}
+
+//no shipping cost
+shippingCost = '';
+
+// if discount or coupon code
+  var couponCode = jQuery(".ShoppingCart div:contains('Discount Code')").find('div:last').text(),
+  data = [],
+  products = [];
+
+// for each table row of Thank you page, send product info
+jQuery('.ShoppingCart .row').each(function() {
+  cartItem = jQuery(this).find("span.CartItemName").text();
+  itemPrice = jQuery(this).find('.price-column').text().trim();
+  quantity = jQuery(this).find('.quantity-column').text().trim();
+ 
+ // loop through cartItems to construct the product array
+  if (cartItem) {
+    itemPrice = itemPrice.replace(/\$/g, ''); //Remove $ sign
+    prodSku = storeId + '-' + cartItem;
+    products.push({
+      'name': cartItem,
+      'id': prodSku,
+      'price': itemPrice,
+      'brand': storeId,
+      'variant': 'one time', // giftDuration
+      'quantity': quantity,
+      'category': '', //  pick something... from the DOM or leave blank
+      'coupon': couponCode
+    });
+  }
+});
+
+window.dataLayer.push({
+  'event': 'storePurchase',
+  'ecommerce': {
+    'purchase': {
+      'actionField': {
+        'id': orderId, 
+        'affiliation': donationAffiliation,
+        'revenue': total, 
+        'tax': '0',
+        'shipping': shippingCost
+      },
+      'products': products
+    }
+  }
+});
+</script>

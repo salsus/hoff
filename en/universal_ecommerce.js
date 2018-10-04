@@ -1,8 +1,9 @@
 // <![CDATA[
     if (window.EngagingNetworks){
 // Standard Ecommerce Tracking for Engaging Networks
-    var initialAmount = '{receipt_data~amount}';
-    var prettyAmount = initialAmount.replace(/\$/g, '');
+    var initialAmount = '{receipt_data~amount}',
+        prettyAmount = initialAmount.replace(/\$/g, ''),
+        formName = jQuery("input[name='ea.form.id']").val();
         
     ga('require', 'ecommerce');
     ga('ecommerce:addTransaction', {
@@ -14,7 +15,7 @@
     });
     ga('ecommerce:addItem', {
         'id': '{receipt_data~txId}',
-        'name': 'jQuery("input[name='ea.form.id']").val()',
+        'name': formName,
         'sku': '{receipt_data~campaignId}',
         'category': '{receipt_data~type}',
         'price': 'prettyAmount',  

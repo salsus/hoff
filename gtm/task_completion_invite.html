@@ -1,0 +1,301 @@
+<!-- Task Completion survey invite
+fired on "window loaded - www"
+-->
+
+<!-- CSS -->
+<style>
+  .taskSurvey {
+    background: #983a3a;
+    color: #fff;
+    padding: 1%;
+    /* width: 25%;*/
+    width:12%;
+    position: fixed;
+    bottom: 0;
+    right: 2%;
+    display: none;
+    /*display:block; use for demoing */ 
+    overflow: auto;
+    font-family: 'interface_bold', 'interface_regular',sans-serif;
+    line-height: 1.3;
+    z-index:100;
+  }
+  .taskSurvey p {
+    margin-bottom: 20px;
+    font-family: 'interface_regular',sans-serif;
+    color: #fff;
+  }
+  .taskSurvey h4 {
+    font-size: 20px;
+    color: #c0eac2;
+    font-weight: normal;
+    padding: 0 0 10px;
+    border-bottom: 1px dashed #ccc;
+    margin: 0;
+  }
+  .taskSurvey a:link, .taskSurvey a:visited {
+    text-decoration: none;
+    color: #ccc;
+  }
+  .taskSurvey a:active, .taskSurvey a:hover {
+    color: #fff;
+  }
+  .taskSurvey .top-right {
+    display: block;
+    float: right;
+    width: 20px;
+    font-weight: bold;
+  }
+  .taskSurvey .startSurvey:link, .taskSurvey .startSurvey:visited {
+    background: #b7a2a2;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    margin: 0 10px 0 0;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border-radius: 5px; 
+    border: 1px solid #b7a2a2;
+  }
+  .taskSurvey .button:active, .taskSurvey .button:hover {
+    background: #a44009;
+    color: #fff;
+  }
+  .taskSurvey .close {
+       display:block;
+       line-height:2em;
+     }
+  @media only screen and (max-width: 1000px) {
+    .taskSurvey {
+      background: #983a3a;
+      color: #fff;
+      padding: 2%;
+      width: 95%;
+      position: fixed;
+      bottom: 0;
+    }
+    .taskSurvey .close {
+       display:inline;
+     }
+  }
+  
+  @media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { 
+  /* ipad landscape */
+   .taskSurvey {
+      background: #044c7f;
+      color: #fff;
+      padding: 2%;
+      width: 95%;
+      position: fixed;
+      bottom: 0;
+    }
+    .taskSurvey .close {
+       display:inline;
+     }
+  }
+  @media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 2) { 
+   /* ipad retina landscape */
+   .taskSurvey {
+      background: #044c7f;
+      color: #fff;
+      padding: 2%;
+      width: 95%;
+      position: fixed;
+      bottom: 0;
+    }
+    .taskSurvey .close {
+       display:inline;
+     }
+  }
+  
+ @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+  /* ipad pro */
+   .taskSurvey {
+      background: #044c7f;
+      color: #fff;
+      padding: 2%;
+      width: 95%;
+      position: fixed;
+      bottom: 0;
+    }
+    .taskSurvey .close {
+       display:inline;
+     }
+  }
+
+</style>
+
+<!-- HTML -->
+<div id="taskSurveyVisitor" class="taskSurvey">
+  <h4><a href="#" class="closeSurvey top-right">x</a>Share Your Thoughts</h4>
+  <p>Just a few minutes of your time can make a big difference.</p>
+  <p>By participating in a quick survey, you can help us shape the future of rila.org.</p>
+  <p>Help make rila.org better.</p>
+  <p><a href="https://www.surveymonkey.com/r/TKTKTKTKTK?purl={{Page URL}}" target="_blank" class="startSurvey">Start Survey</a> <a href="#" class="closeSurvey close">Close this box</a></p>
+</div>
+
+<!-- JS -->
+<script>
+  console.log('start survey js');
+  /* launched 5/30/2017 - with 50% sample 
+    relaunched 6/9/2017 - without sample and 35 second delay, no change in cookie
+  */
+  
+  
+(function(window) {
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + "; domain=.rila.org; path=/";
+}
+  
+   function createShortCookie(name,value,exhours) {
+      var exdate = new Date();
+      var val = exdate.valueOf();
+      val += 3600000 * exhours; // Add exhours * 3600000 milliseconds to the date
+      exdate = new Date(val); 
+       var c_value = escape(value) + ((exhours == null) ? "" : "; expires=" + exdate.toUTCString())
+   document.cookie = name + "=" + c_value + "; domain=.TODOTODO.org; path=/"; 
+   }
+    
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+    }
+  return null;
+}
+  
+  function checkToday() {
+      var today = new Date(),
+          startV = new Date("Dec 1, 2017 00:00:00"),
+          endV = new Date("July 30, 2018 00:00:00");
+  
+      if ((today > startV) && (today < endV)) {
+         return '#taskSurveyVisitor';
+        //console.log('date passed');
+      } else {
+         return false;
+      }
+  }
+  
+  jQuery(document).ready(function() {
+    var survey = checkToday(),   // hide when demoing without cookies
+   //   survey = '#taskSurveyVisitor', // use when demoing without cookies
+        surveyCookie = getCookie('taskFeedback2017'),
+        $startSurveyButton = jQuery('.startSurvey'),
+        randomNumSample = 1073741824,
+        randomNumber = {{Random Number}}
+    
+    /* Use for 50% sample 
+  if (!(surveyCookie) && survey) {
+           if(randomNumber < randomNumSample) { // 50% sample from Simo Ahava
+          var pURL = encodeURIComponent(window.location),
+      traffic = '',
+          user = '';
+       var surveyURL = 'https://www.surveymonkey.com/r/TKTKTKTK?purl=' + pURL + '&traffic=' + traffic + '&uuid=' + user + '&set';
+       $startSurveyButton.attr('href', surveyURL);
+          jQuery(survey).show().fadeIn(700);
+         // console.log('survey shown - 50%');
+             //console.log(survey);
+             dataLayer.push({
+                'gtmCategory': '',
+                'gtmAction': 'Task Survey',
+                'gtmLabel': 'View',
+                'event': 'gtmEvent'
+            });
+        }
+    } else {
+      //console.log('survey not shown');
+            dataLayer.push({
+                'event': 'No Survey'
+            });
+    }*/
+    
+  
+  // display survery WITHOUT sample 
+  if (!(surveyCookie) && survey) {
+     var pURL = encodeURIComponent(window.location),
+          surveyURL = 'https://www.surveymonkey.com/r/TKTKTKTK';
+       $startSurveyButton.attr('href', surveyURL);
+    //?purl=' + pURL + '&traffic=' + traffic + '&uuid=' + user + '&set'
+    
+    setTimeout(function() { 
+       jQuery(survey).fadeIn(700);
+      console.log('survey after 35 seconds');
+      dataLayer.push({
+              'gtmCategory': {{Site Section}},     
+                'gtmAction': 'Task Completion',
+                'gtmLabel': 'View',
+                'gtmNonInteraction': 'true',      
+                'event': 'gtmEvent'
+            });
+    
+    }, 1);//update to appear after 1 milisecond
+         
+  } else {
+      //console.log('survey not shown');
+            dataLayer.push({
+                'event': 'No Survey'
+            });
+    }
+  
+    // if the visitor closes the survey, add a 18-hour cookie
+    jQuery('.closeSurvey').click(function(e) {
+      jQuery(survey).fadeOut(300).hide();
+      e.preventDefault();
+      createShortCookie('taskFeedback2017', '1', 18);
+       dataLayer.push({
+                'gtmCategory': {{Site Section}},
+                'gtmAction': 'Task Completion',
+                'gtmLabel': 'Close',
+                'gtmNonInteraction': 'false',        
+                'event': 'gtmEvent'
+            });
+    //console.log('survey close');
+    });
+  
+    // if the visitor takes the survey, add a longer cookie
+    jQuery('.startSurvey').click(function() {
+      jQuery(survey).show().fadeOut(300);
+       dataLayer.push({
+                'gtmCategory': {{Site Section}},
+                'gtmAction': 'Task Completion',
+                'gtmLabel': 'Start',
+                'gtmValue': 1,
+                'gtmNonInteraction': 'false',
+                'event': 'gtmEvent'
+            });
+      setCookie('taskFeedback2017', '2', 5);
+      //console.log('survey start');
+    });
+
+    
+    // demo with out cookies
+/*  var pURL = encodeURIComponent(window.location),
+    traffic = '',
+        user = '';
+     var surveyURL = 'https://www.surveymonkey.com/r/TKTKTKTK?purl=' + pURL + '&set';
+          //$startSurveyButton.attr('href', surveyURL);
+        jQuery('.startSurvey').attr('href', surveyURL);
+          jQuery(survey).fadeIn(700);
+  */        
+  
+  });
+})(window);
+</script>

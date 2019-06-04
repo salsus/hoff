@@ -1,4 +1,20 @@
-//Auto generated source codes
+/* Auto generated source codes via Google Tag Manager
+
+This code can be added to a GTM Tag, fired at DOM Ready
+Generates date and traffic medium based tracking codes into Cookies.
+Currently, Date is based off of calendar year.
+Modify the schema/contents of the source code underneath the comment "dynamic source codes" for organic, referral and direct
+
+Needs in GTM:
+8 variables 
+ + CRMDomain = constant, hostname of eCRM (non-secure and secure)
+ + CMSDomain = constant, hostname of CMS
+ + bfrSource = 1st party cookie
+ + ea.tracking.id = 1st party cookie
+ + ea.tracking.id = url parameter
+ + Final Tracking ID = custom javascript
+
+*/
   
   var d = new Date();
     var fullYear = d.getFullYear();

@@ -1,4 +1,7 @@
 <script>
+/* Javascript for GTM to track Luminate Online Ticketed Events transactions. No S-Tags used/needed. 
+Author: sara.hoffman@beaconfire-red.com -- https://github.com/salsus/
+*/
 var dataLayer = window.dataLayer || [];
   // hybrid of eCommerce module tracking for Calendar Event Tracking - both use Donations Classic
 var cartItem, itemPrice, itemQuantity, total;
@@ -6,7 +9,7 @@ var cartItem, itemPrice, itemQuantity, total;
             var amountTotal = 0;
             var orderId = $('#lo-convioTrxContainer').text();
             var eventId = "{{convio.id}}";
-            var eventName = "{{Calendar - Event Title}}";
+            var eventName = "{{Calendar - Event Title}}";   // DOM variable, #lo-EventTitle
             
 			orderId = orderId.replace(/\n/g, "").replace("Your transaction for the following tickets has been processed.","").replace(/^\s+/g, '').replace("The transfer code is ","").replace('.','');
 			
@@ -31,8 +34,8 @@ var cartItem, itemPrice, itemQuantity, total;
 						'price': itemPrice,
 						'quantity': itemQuantity,
                         'variant': cartItem,
-                        'category': '{{Calendar - evEventCategory}}',
-                        'brand': '{{Calendar - evEventAffiliate}}'
+                        'category': '{{Calendar - evEventCategory}}',   // dataLayer variable "evEventAffiliate"
+                        'brand': '{{Calendar - evEventAffiliate}}'      // dataLayer variable "evEventCategory"
                     };
                     items.push(prods);
                 }

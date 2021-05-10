@@ -1,0 +1,56 @@
+<script>
+var dataLayer = window.dataLayer || [];
+  // hybrid of eCommerce module tracking for Calendar Event Tracking - both use Donations Classic
+var cartItem, itemPrice, itemQuantity, total;
+            var items = [];
+            var amountTotal = 0;
+            var orderId = $('#lo-convioTrxContainer').text();
+            var eventId = "{{convio.id}}";
+            var eventName = "{{Calendar - Event Title}}";
+            
+			orderId = orderId.replace(/\n/g, "").replace("Your transaction for the following tickets has been processed.","").replace(/^\s+/g, '').replace("The transfer code is ","").replace('.','');
+			
+			var prods = {};
+
+            //Get total from last row in table
+            total = $('table#EventHistory tr#ticket-class-history-total').find('td:nth-child(4) > p').text();
+            if (total) {
+                total = total.replace(/\$/g, ''); //Remove $ sign
+            }
+            
+			//loop through ticket table for each ticket item purchased
+            $('table#EventHistory tr:not(#ticket-class-history-total)').each(function() {
+                cartItem = $(this).find('td:nth-child(1) > p').text(); //event name
+                itemPrice = $(this).find('td:nth-child(2) > p').text(); //total event cost
+                itemQuantity = $(this).find('td:nth-child(3) > p').text();
+                if (cartItem) {
+                    itemPrice = itemPrice.replace(/\$/g, ''); //Remove $ sign
+                    prods = {
+                        'name': eventName + ' - ' + eventId,         // Name or ID is required.
+						'id': eventId,
+						'price': itemPrice,
+						'quantity': itemQuantity,
+                        'variant': cartItem,
+                        'category': '{{Calendar - evEventCategory}}',
+                        'brand': '{{Calendar - evEventAffiliate}}'
+                    };
+                    items.push(prods);
+                }
+            });
+			
+	window.dataLayer.push({
+  'event': 'ticketPurchase',
+  'ecommerce': {
+    'purchase': {
+      'actionField': {
+        'id': orderId, //Transaction ID. Required for purchases and refunds.
+        'affiliation': 'Events',
+        'revenue': total, //Total transaction value (incl. tax and shipping)
+        'tax': '0',
+        'shipping': '0'
+      },
+      'products': items 
+    }
+  }
+});
+</script>

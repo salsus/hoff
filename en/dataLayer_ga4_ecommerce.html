@@ -1,0 +1,95 @@
+<script type="text/javascript">// <![CDATA[
+// for OLD Pagebuilder AND NEW pagebuilder
+    if (window.EngagingNetworks){
+        
+        function getTrackingCode(key, charPosition) {
+            var queryParams = location.search.replace(/\?/, '').split(/\&/),
+                trackingParam = new RegExp(key),
+                code,
+                i;
+            
+            for (i = queryParams.length - 1; i >= 0; i--) {
+                if ( trackingParam.test(queryParams[i]) ) {
+                    code = queryParams[i].split('=')[1];
+                    break;
+                }
+            }
+            
+            return charPosition === undefined ? code : code.charAt(charPosition);
+        }	
+        
+        // Meant to be global variable, for outside script usage
+        analyticsTransactionData = {
+            'affiliation': 'Engaging Networks',
+            'category': jQuery("input[name='ea.campaign.id']").val(),
+            'product': jQuery("input[name='ea.form.id']").val(),
+            'type': '{receipt_data~other3}' === 'AN' ? 'Sponsorship_Annual' : '{receipt_data~other2}' === 'N' ? 'OneTime' : '{receipt_data~other2}' === 'Y' ? 'Recurring' : 'Other',
+            'total': '{receipt_data~amount}'.replace(/\$|\s/g, ''),
+            'id': '{receipt_data~txId}',
+            'donor_city': '{user_data~Billing City}',
+            'donor_state': '{user_data~Billing State}',
+            'donor_country': '{user_data~Billing Country}'
+        };
+        
+        /* Pull all variables
+        //CampaignID : {receipt_data~campaignId}  CampaignerId {receipt_data~campaignerId}  ID  {receipt_data~txId}  type {receipt_data~type} txid {receipt_data~txId} rrefererid {receipt_data~referrerId} directgift {receipt_data~directGift} other1 {receipt_data~other1} other2 {receipt_data~other2} other3 {receipt_data~other3} othr4 {receipt_data~other4} recognize  gift {receipt_data~inMemrecognizeGift}?
+        */
+        //Use for debugging or set up
+        /*
+        console.log('CampaignID: ' + '{receipt_data~campaignId}');
+        console.log('CampaignerId: ' +'{receipt_data~campaignerId}');
+        console.log('ID: ' + '{receipt_data~txId}' );
+        console.log('type: ' + '{receipt_data~type}');
+        console.log('txid: ' + '{receipt_data~txId}');
+        console.log('rrefererid: ' + '{receipt_data~referrerId}');
+        console.log('directgift: ' + '{receipt_data~directGift}');
+        console.log('other1: ' + '{receipt_data~other1}');
+        console.log('other2: ' + '{receipt_data~other2}');
+        console.log('other3: ' + '{receipt_data~other3}');
+        console.log('othr4: ' + '{receipt_data~other4}');
+        console.log('recognize gift: ' + '{receipt_data~inMemrecognizeGift}');
+        console.log('total: ' + '{receipt_data~amount}'.replace(/\$|\s/g, ''));
+        */ 
+       
+
+        //GA4 ecommerce
+
+var initialAmount = '{receipt_data~amount}';
+var prettyAmount = initialAmount.replace(/\$/g, '');
+
+        // Send transaction data with a pageview if available
+        // when the page loads. Otherwise, use an event when the transaction
+        // data becomes available.
+        dataLayer.push({
+            'event': 'transaction',
+            'ecommerce': {
+				transaction_id: "{receipt_data~txId}",// Transaction ID. Required for purchases and refunds.
+				value: prettyAmount, // Total transaction value (incl. tax and shipping)
+				tax: 0.00,
+				shipping: 0.00,
+				currency: "USD",
+				//coupon: "SUMMER_SALE",
+			items: [
+				 {
+				  item_id: "{receipt_data~campaignId}",
+				  item_name: "{receipt_data~campaignId}", // Name or ID is required.
+				  affiliation: "Engaging Networks Donation Form",  
+				  //coupon: "SUMMER_FUN",
+				  //discount: 0.00,
+				  //index: 0,
+				  //item_brand: "Google",
+				  item_category: "{receipt_data~type}",  // moves monthly or one-time to dataLayer for use with cookies
+				  //item_category2: "Adult",
+				  //item_category3: "Shirts",
+				  //item_category4: "Crew",
+				  //item_category5: "Short sleeve",
+				  //item_list_id: "related_products",
+				  //item_list_name: "Related Products",
+				  //item_variant: "green",
+				  price: prettyAmount,
+				  quantity: 1
+				}
+            }
+        });
+    }
+// ]]></script>

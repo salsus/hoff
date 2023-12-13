@@ -1,0 +1,35 @@
+ dataLayer.push({
+      'event': 'counterClick', 
+    'attributes': {
+     'gtmClickCounter': gccn + 1
+   }
+}
+
+
+//JS - Get value from the previous dropdown, and plug this value into your tag
+   function() {
+        return sessionStorage.getItem("gtm_demo");
+    }
+
+
+
+//{{JS - DEMO}} JS - Get value from the Dropdown
+function(){
+  var e;
+  e = document.querySelectorAll(".select")[0];
+  var value = e.options[e.selectedIndex].value;
+var text = e.options[e.selectedIndex].text;
+ 
+  
+   if (e.options.selectedIndex.length != 0){
+      return text;
+  } else { return undefined;}
+ 
+}
+
+
+
+//CHTML - SS - Combo Form (w/on submit trigger)
+  <script>
+        sessionStorage.setItem("gtm_demo", {{JS - DEMO}});
+    </script>

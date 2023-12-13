@@ -1,0 +1,1192 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2023-12-13 17:43:12",
+    "containerVersion": {
+        "path": "accounts/263956808/containers/47770721/versions/0",
+        "accountId": "263956808",
+        "containerId": "47770721",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/263956808/containers/47770721",
+            "accountId": "263956808",
+            "containerId": "47770721",
+            "name": "GA4 - Template Basics",
+            "publicId": "GTM-PD9DLQM",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1625156835229",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/263956808/containers/47770721/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-PD9DLQM"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "tagId": "9",
+                "name": "GA4 - Configuration Tag",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "{{CON - Measurement ID}}"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "userProperties",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "name",
+                                        "value": "client_id"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "{{1PC - Client Id}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "configSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "traffic_type"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{RXT - Internal Ip Filter}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "hostname"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Page Hostname}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "gtm_settings"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Container ID}} | {{Container Version}} | {{Environment Name}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "page_path"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Page Path}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "send_page_view"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "true"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1662043122262",
+                "firingTriggerId": [
+                    "8"
+                ],
+                "setupTag": [
+                    {
+                        "tagName": "HTML - Redact PII"
+                    }
+                ],
+                "parentFolderId": "3",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "tagId": "12",
+                "name": "CHTML - Get IP Address",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"application/javascript\">\n  function getIP(json) {\n    dataLayer.push({\"event\":\"ipEvent\",\"ipAddress\" : json.ip});\t\n  }\n</script>\n\n<script type=\"application/javascript\" src=\"https://api.ipify.org?format=jsonp&callback=getIP\"></script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1625156875457",
+                "firingTriggerId": [
+                    "10"
+                ],
+                "parentFolderId": "3",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "tagId": "13",
+                "name": "SS - set - my_ip",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "  <script>\n        sessionStorage.setItem(\"my_ip\", {{DLV - IP Address}});\n    </script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "true"
+                    }
+                ],
+                "fingerprint": "1625156875457",
+                "firingTriggerId": [
+                    "4"
+                ],
+                "parentFolderId": "3",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "tagId": "18",
+                "name": "GA4 - Contact Links",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "gtm_tag_name"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "GA4 - Contact Links"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "contact_type"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{LT - Label for Contact Links}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "link_classes"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Click Classes}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "link_text"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Click URL}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "contact"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{CON - Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1664498469487",
+                "firingTriggerId": [
+                    "16"
+                ],
+                "parentFolderId": "3",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "tagId": "22",
+                "name": "GA4 - Outbound Links",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "gtm_tag_name"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "GA4 - Outbound Links"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "link_classes"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Click Classes}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "link_domain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{CJS - Link Domain}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "link_id"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Click ID}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "link_text"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Click Text}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "link_url"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Click URL}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "outbound_click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{CON - Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1664366220899",
+                "firingTriggerId": [
+                    "23"
+                ],
+                "parentFolderId": "3",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "tagId": "25",
+                "name": "HTML - Redact PII",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  (function() {\n\n    /*\n    *  \n    * Analytics Debugger S.L.U. 2021 ( David Vallejo @thyng )\n    *  MIT  License\n    * All redact Logic is ran within this function\n    * \n    */\n    window.__piiRedact = window.__piiRedact || false;\n    var piiRedact = function piiRedact(payload) {\n        // Regex List\n        var piiRegex = [{\n            name: 'EMAIL',\n            regex: /[^\\/]{4}(@|%40)(?!example\\.com)[^\\/]{4}/gi,\n            group: ''\n        }, {\n            name: 'SELF-EMAIL',\n            regex: /[^\\/]{4}(@|%40)(?=example\\.com)[^\\/]{4}/gi,\n            group: ''\n        }, {\n            name: 'TEL',\n            regex: /((tel=)|(telephone=)|(phone=)|(mobile=)|(mob=))[\\d\\+\\s][^&\\/\\?]+/gi,\n            group: '$1'\n        }, {\n            name: 'NAME',\n            regex: /((firstname=)|(lastname=)|(surname=))[^&\\/\\?]+/gi,\n            group: '$1'\n        }, {\n            name: 'PASSWORD',\n            regex: /((password=)|(passwd=)|(pass=))[^&\\/\\?]+/gi,\n            group: '$1'\n        }, {\n            name: 'ZIP',\n            regex: /((postcode=)|(zipcode=)|(zip=))[^&\\/\\?]+/gi,\n            group: '$1'\n        }];\n\n        // Helper Convert QueryString to an Object \n        var queryString2Object = function queryString2Object(str) {\n            return (str || document.location.search).replace(/(^\\?)/, \"\").split(\"&\").map(function(n) {\n                return n = n.split(\"=\"),\n                this[n[0]] = decodeURIComponent(n[1]),\n                this;\n            }\n            .bind({}))[0];\n        };\n        // Helper Convert an Object to a QueryString\n        var Object2QueryString = function Object2QueryString(obj) {\n            return Object.keys(obj).map(function(key) {\n                return key + '=' + encodeURIComponent(obj[key]);\n            }).join('&');\n        };\n        // Convert the current payload into an object\n        var parsedPayload = queryString2Object(payload);\n        // Loop through all keys and check the values agains our regexes list\n        for (var pair in parsedPayload) {\n            piiRegex.forEach(function(pii) {\n                // The value is matching?\n                if (parsedPayload[pair].match(pii.regex)) {\n                    // Let's replace the key value based on the regex\n                    parsedPayload[pair] = parsedPayload[pair].replace(pii.regex, pii.group + '[REDACTED ' + pii.name + ']');\n                }\n            });\n        }\n        // Build and send the payload back\n        return Object2QueryString(parsedPayload);\n    };\n    if (!window.__piiRedact) {\n        window.__piiRedact = !0;\n        try {\n            // Monkey Patch, sendBeacon \n            var proxied = window.navigator.sendBeacon;\n            window.navigator.sendBeacon = function() {\n                if (arguments && arguments[0].match(/google-analytics\\.com.*v\\=2\\&/)) {\n\n                    var endpoint = arguments[0].split('?')[0];\n                    var query = arguments[0].split('?')[1];\n                    var beacon = {\n                        endpoint: endpoint,\n                        // Check for PII\n                        query: piiRedact(query),\n                        events: []\n                    };\n                    // This is a multiple events hit\n                    if (arguments[1]) {\n                        arguments[1].split(\"\\r\\n\").forEach(function(event) {\n                            // Check for PII\n                            beacon.events.push(piiRedact(event));\n                        });\n                    }\n\n                    // We're all done, let's reassamble everything\n                    arguments[0] = [beacon.endpoint, beacon.query].join('?');\n                    if (arguments[1] && beacon.events.length > 0) {\n                        beacon.events.join(\"\\r\\n\");\n                    }\n                }\n                return proxied.apply(this, arguments);\n            }\n            ;\n        } catch (e) {\n            // In case something goes wrong, let's apply back the arguments to the original function\n            return proxied.apply(this, arguments);\n        }\n    }\n}\n)();\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1657146442651",
+                "parentFolderId": "3",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "triggerId": "4",
+                "name": "CE - ipEvent",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "ipEvent"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1625156875454",
+                "parentFolderId": "3"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "triggerId": "8",
+                "name": "PV - All Pages",
+                "type": "PAGEVIEW",
+                "fingerprint": "1625156875455",
+                "parentFolderId": "3"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "triggerId": "10",
+                "name": "PV - Landing Page",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Referrer}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "YOUR_DOMAIN"
+                            },
+                            {
+                                "type": "BOOLEAN",
+                                "key": "negate",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1625156875456",
+                "parentFolderId": "3"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "triggerId": "16",
+                "name": "Click - Mailto and Tel Links",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "^(mailto|tel):"
+                            },
+                            {
+                                "type": "BOOLEAN",
+                                "key": "ignore_case",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE"
+                },
+                "fingerprint": "1625157795626",
+                "parentFolderId": "3"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "triggerId": "23",
+                "name": "Click - Outbound Link",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{CJS - Is Outbound Link}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "autoEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page Path}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "true"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE"
+                },
+                "fingerprint": "1625159233922",
+                "parentFolderId": "3"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "5",
+                "name": "SS - get - my_ip",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "  function() {\n        return sessionStorage.getItem(\"my_ip\");\n    }"
+                    }
+                ],
+                "fingerprint": "1625156875456",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "6",
+                "name": "RXT - Internal Ip Filter",
+                "type": "remm",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "input",
+                        "value": "{{SS - get - my_ip}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "fullMatch",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "replaceAfterMatch",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "ignoreCase",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "defaultValue",
+                        "value": "external"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "map",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "24.165.201.11"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "internal"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1625157022725",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "7",
+                "name": "CJS - Hit timestamp",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n    // Get local time as ISO string with offset at the end\n    var now = new Date();\n    var tzo = -now.getTimezoneOffset();\n    var dif = tzo >= 0 ? '+' : '-';\n    var pad = function(num) {\n        var norm = Math.abs(Math.floor(num));\n        return (norm < 10 ? '0' : '') + norm;\n    };\n    return now.getFullYear() \n        + '-' + pad(now.getMonth()+1)\n        + '-' + pad(now.getDate())\n        + 'T' + pad(now.getHours())\n        + ':' + pad(now.getMinutes()) \n        + ':' + pad(now.getSeconds())\n        + '.' + pad(now.getMilliseconds())\n        + dif + pad(tzo / 60) \n        + ':' + pad(tzo % 60);\n}"
+                    }
+                ],
+                "fingerprint": "1625156875457",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "11",
+                "name": "DLV - IP Address",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "ipAddress"
+                    }
+                ],
+                "fingerprint": "1625156875456",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "14",
+                "name": "CON - Your Domain",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "yourdomain.com"
+                    }
+                ],
+                "fingerprint": "1625161504308",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "15",
+                "name": "CON - Measurement ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "G-XXXXXXXXX"
+                    }
+                ],
+                "fingerprint": "1625161514859",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "17",
+                "name": "LT - Label for Contact Links",
+                "type": "remm",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "input",
+                        "value": "{{Click URL}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "fullMatch",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "replaceAfterMatch",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "defaultValue",
+                        "value": "{{Click Classes}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "ignoreCase",
+                        "value": "true"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "map",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "^(mailto:).*"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "email"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "^(tel:).*"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "phone"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1625157941321",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "19",
+                "name": "1PC - Client Id",
+                "type": "k",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "decodeCookie",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "_ga"
+                    }
+                ],
+                "fingerprint": "1657146668125",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "21",
+                "name": "CJS - Link Domain",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\nvar cu = \"{{Click URL}}\"\nvar cdom = (new URL(cu));\n  domain = cdom.hostname;\n  return domain;\n}"
+                    }
+                ],
+                "fingerprint": "1657146642062",
+                "parentFolderId": "3",
+                "formatValue": {}
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "variableId": "24",
+                "name": "CJS - Is Outbound Link",
+                "type": "aev",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "varType",
+                        "value": "URL"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "component",
+                        "value": "IS_OUTBOUND"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "affiliatedDomains",
+                        "value": "{{CON - Your Domain}}"
+                    }
+                ],
+                "fingerprint": "1658263000929",
+                "parentFolderId": "3",
+                "formatValue": {}
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "folderId": "3",
+                "name": "GA4",
+                "fingerprint": "1625156875453"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "CLICK_ELEMENT",
+                "name": "Click Element"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "CLICK_CLASSES",
+                "name": "Click Classes"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "CLICK_ID",
+                "name": "Click ID"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "CLICK_TARGET",
+                "name": "Click Target"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "CLICK_URL",
+                "name": "Click URL"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "CLICK_TEXT",
+                "name": "Click Text"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "FORM_ELEMENT",
+                "name": "Form Element"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "FORM_CLASSES",
+                "name": "Form Classes"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "FORM_ID",
+                "name": "Form ID"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "FORM_TARGET",
+                "name": "Form Target"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "FORM_URL",
+                "name": "Form URL"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "FORM_TEXT",
+                "name": "Form Text"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "CONTAINER_VERSION",
+                "name": "Container Version"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "CONTAINER_ID",
+                "name": "Container ID"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "ENVIRONMENT_NAME",
+                "name": "Environment Name"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "VIDEO_PROVIDER",
+                "name": "Video Provider"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "VIDEO_URL",
+                "name": "Video URL"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "VIDEO_TITLE",
+                "name": "Video Title"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "VIDEO_DURATION",
+                "name": "Video Duration"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "VIDEO_PERCENT",
+                "name": "Video Percent"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "VIDEO_VISIBLE",
+                "name": "Video Visible"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "VIDEO_STATUS",
+                "name": "Video Status"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "VIDEO_CURRENT_TIME",
+                "name": "Video Current Time"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "SCROLL_DEPTH_THRESHOLD",
+                "name": "Scroll Depth Threshold"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "SCROLL_DEPTH_UNITS",
+                "name": "Scroll Depth Units"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "SCROLL_DEPTH_DIRECTION",
+                "name": "Scroll Direction"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "ELEMENT_VISIBILITY_RATIO",
+                "name": "Percent Visible"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "47770721",
+                "type": "ELEMENT_VISIBILITY_TIME",
+                "name": "On-Screen Duration"
+            }
+        ],
+        "fingerprint": "1702489392799",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/263956808/containers/47770721/versions/0?apiLink=version"
+    }
+}

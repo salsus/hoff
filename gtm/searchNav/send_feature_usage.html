@@ -1,0 +1,51 @@
+<script>
+  (function() {
+    var isDebugMode = {{Debug Mode }} === true;
+    function debugLog() {
+      if (isDebugMode) console.log.apply(console, arguments);
+    }
+
+    var usedMenuRaw = sessionStorage.getItem('usedMenuNav');
+    var usedSearchRaw = sessionStorage.getItem('usedSearch');
+    var usedMenu = usedMenuRaw === 'true';
+    var usedSearch = usedSearchRaw === 'true';
+    var menuStatus = usedMenu ? 'yes' : 'no';
+    var searchStatus = usedSearch ? 'yes' : 'no';
+    var firstUsed = sessionStorage.getItem('featureFirstUsed') || 'none';
+
+    var alreadySent = sessionStorage.getItem('featureUsageSent') === 'true';
+    var updateAlreadySent = sessionStorage.getItem('featureUsageUpdateSent') === 'true';
+
+    debugLog('[Feature Usage] Step 1: Read sessionStorage', {
+      usedMenuNav: menuStatus,
+      usedSearch: searchStatus,
+      featureFirstUsed: firstUsed,
+      featureUsageSent: alreadySent,
+      featureUsageUpdateSent: updateAlreadySent
+    });
+
+    window.dataLayer = window.dataLayer || [];
+
+    if (!alreadySent) {
+      debugLog('[Feature Usage] Step 2: Pushing "feature_usage_status" event');
+      window.dataLayer.push({
+        event: 'feature_usage_status',
+        feature_menu: menuStatus,
+        feature_search: searchStatus,
+        feature_first_used: firstUsed
+      });
+      sessionStorage.setItem('featureUsageSent', 'true');
+    }
+
+    if (usedMenu && usedSearch && !updateAlreadySent) {
+      debugLog('[Feature Usage] Step 3: Pushing "feature_usage_status_update" event');
+      window.dataLayer.push({
+        event: 'feature_usage_status_update',
+        feature_menu: menuStatus,
+        feature_search: searchStatus,
+        feature_first_used: firstUsed
+      });
+      sessionStorage.setItem('featureUsageUpdateSent', 'true');
+    }
+  })();
+</script>

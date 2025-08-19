@@ -1,0 +1,12 @@
+<script>
+  // used as an event-scoped parameter because a user property would only be useful in BigQuery, AND in the GA4 interface, a user property is best represented as an audience; however, this interaction type could be first in one session but not in another session from the same user.
+  // Mark that search was used
+  sessionStorage.setItem('usedSearch', 'true');
+
+  if (!sessionStorage.getItem('featureFirstUsed')) {
+    sessionStorage.setItem('featureFirstUsed', 'search');
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'featureInteractionDetected' });
+</script>

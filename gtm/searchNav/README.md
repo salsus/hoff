@@ -1,6 +1,6 @@
 # Which Feature was used first: Navigation or Search
 
-This configuration is for Google Tag Manager to send 1 GA4 event tag with feature_use_status.
+This configuration is for Google Tag Manager to send 1 GA4 event tag with feature_use_status/feature_status_update.
 The current implementation sends these parameters as event-scoped, not as user properties. 
 Configured as an event-scoped parameter because a user property would only be applicable in BigQuery, AND in the GA4 interface, a user property is best represented as an audience. However, this interaction type could be first in one session but not in another session from the same user.
 
@@ -22,13 +22,15 @@ The "used" HTML tags are triggered off of existing triggers and blockers based o
 The "send" HTML and the GA4 event use the custom events that the HTML tags set up via the dataLayer.
 
 
-![Screenshot of all components configured in GTM](https://github.com/salsus/archive/blob/master/GTMcode/searchNav/feature_allGTMelements.png)]
+![Screenshot of all components configured in GTM](https://github.com/salsus/hoff/blob/89c18e534f6a5d7f565d2550975c7219b1a5eb5c/gtm/searchNav/feature_allGTMelements.png)
 
+
+![GA4 Event Tag](https://github.com/salsus/hoff/blob/89c18e534f6a5d7f565d2550975c7219b1a5eb5c/gtm/searchNav/feature_ga4Event.png)
 
 
 ## QA
 
-I used a custom Javascript variable to read the sessionStorage.
+I used a custom JavaScript variable to read the sessionStorage.
 
 `function() {
 // which feature did a user first - navigation or search
@@ -56,8 +58,16 @@ What questions can we answer with this information?
 
 ## Possible changes or considerations
 
-If you are low on custom dimensions, then consolidate cds to only use two: "feature_used" and "feature_used_first"
+If you are low on custom dimensions, then consolidate custom dimensions to only use two: "feature_used" and "feature_used_first"
 
 This could be extended to include search filters, pagination, sorting, or additional UI features. 
 
 Requires extra work to capture the search term or the navigation item for deeper analysis. This information wouldn't be recommended for the "first_usage" interaction because it fires before a user has thoroughly searched or navigated. It could also be helpful in tandem with SERP clicks and navigation events.
+
+
+--
+
+# Extensions
+
+Add a custom dimension of "Feature Type" to the parameters and extend usage to UI elements like pagination, search filters, or sort.
+

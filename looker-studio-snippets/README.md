@@ -34,7 +34,7 @@ Syntax notes that have caused errors before:
 
 ## Notes by file
 
-**Device and screen size files.** App streams do not report screen resolution, so app screen sizes are guesses built from device model. The fields chain together: Device Text, then Device Grouping, then Screen Resolution Guess, then Design System Sizing. `app-screen-size-estimation.md` is the maintained version and explains how to add new phones. If the `.sql` versions of Device Grouping or Screen Resolution Guess differ from it, use the markdown.
+**Device and screen size files.** App streams do not report screen resolution, so app screen sizes are guesses built from device model. The fields chain together: Device Text, then Device Grouping, then Screen Resolution Guess, then Design System Sizing. `app-screen-size-estimation.md` is the maintained version and explains how to add new phones. The device and viewport `.sql` files hold the same formulas, so update all three together.
 
 **Referrer normalization.** The domains and paths are replaced with `xxxx` placeholders. Substitute your own domain and the detail page paths you want to roll up.
 

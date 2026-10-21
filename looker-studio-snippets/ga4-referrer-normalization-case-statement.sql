@@ -59,7 +59,7 @@ CASE
       "^https://(?:content\\.)xxxxxxxxx\\.xxxxxxxxxxx\\.com",
       ""
     ),
-    "^/administration/employee/details/retirement/[^/?#]+/[^/?#]+.*"
+    "^/administration/xxxxxxx/xxxxxxxx/xxxxx/[^/?#]+/[^/?#]+.*"
   )
     THEN "/administration/xxxxxxx/xxxxxxxx/xxxxx/"
   WHEN REGEXP_MATCH(
